@@ -1,56 +1,48 @@
-# graham-alspach-certificates
+# Graham–Alspach sequenceability certificates
 
-The full computational certificates behind the Graham / Alspach sequenceability results, for nine
-primes, with the adversarial tests that try to break them.
+The complete computational certificate bank behind the Graham–Alspach sequenceability results for nine primes, together with independent verification and deliberately corrupted controls.
 
 Author: Jared Wilder. First public timestamp: 2026-09-10. Work dated 2026-07.
 
-## The theorem certified
+## The statement being certified
 
-Every subset A of Z_p minus {0} admits an ordering a_1, ..., a_m whose partial sums are pairwise
-distinct and whose proper partial sums are nonzero.
+For the finite cyclic groups covered here, every subset `A ⊂ Z_p \ {0}` in the stated cardinality range admits an ordering `a_1,…,a_m` whose partial sums are pairwise distinct and whose proper partial sums are nonzero.
 
-**Published general results cover every subset of size at most 20.** These certificates
-exhaustively cover the remaining sizes: **21 through 28 for Z_29**, and **21 through 30 for Z_31**,
-with further coverage for Z_37, Z_41, Z_43, Z_47, Z_59, Z_61 and Z_73.
+Published general results cover every subset of size at most 20. These certificates exhaustively cover:
 
-Z_29 alone carries **60,134 certificate rows**.
+- **sizes 21–28 in `Z_29`**;
+- **sizes 21–30 in `Z_31`**;
+- further upper-size ranges in `Z_37`, `Z_41`, `Z_43`, `Z_47`, `Z_59`, `Z_61`, and `Z_73`.
 
-## How the certificate is structured, and why that matters
+`Z_29` alone contains **60,134 certificate rows**.
 
-1. Multiplication by a nonzero residue preserves sequencing: a witness for A scales to a witness
-   for uA.
-2. The generator emits **one canonical representative per multiplicative orbit** in every target
-   cardinality.
-3. Each row carries the exact set, its total, and an explicit ordering.
+## Certificate structure
 
-So the certificate is small relative to the space it covers, and the covering argument is the thing
-a referee must check, not the row count.
+The computation uses multiplicative symmetry:
 
-## What checks it
+1. multiplication by a nonzero residue preserves sequenceability;
+2. the generator chooses one canonical representative from each multiplicative orbit in every target cardinality;
+3. each representative stores its exact subset, total sum, and an explicit sequencing witness.
 
-**Two independent verifiers in different languages.**
+So the key correctness question is not the raw row count but whether the representatives cover every orbit exactly as claimed.
 
-The Go verifier validates every representative witness, validates every scaled witness for every
-unit, reconstructs every covered subset in a 2^28-bit universe, rejects duplicate coverage, and
-checks exact binomial totals.
+## Independent verification
 
-The Python verifier independently recomputes canonical representatives and stabilizers, validates
-every representative witness, and proves disjoint orbit coverage by exact orbit-size accounting.
+Two independently written verifiers check the certificates.
 
-**Four classes of deliberately corrupted certificate are rejected by both.** Those adversarial
-tests are in `certificates/graham-z29/adversarial-certificate-tests.json` and the v2 file, and they
-are the reason to believe the verifiers do anything.
+The **Go verifier** validates every representative witness, every scaled witness, reconstructs coverage in a `2^28`-bit universe, rejects duplicate coverage, and checks exact binomial totals.
 
-**Regeneration at 48 threads and at 16 threads produces the identical certificate hash.**
+The **Python verifier** independently recomputes canonical representatives and stabilizers, validates each witness, and checks disjoint orbit coverage by exact orbit-size accounting.
 
-## The trust assumption, again
+Both verifiers reject four classes of deliberately corrupted certificate. Those controls live in `certificates/graham-z29/adversarial-certificate-tests.json` and its v2 companion.
 
-The Lean side of this work carries the three standard axioms plus exactly one `native_decide` per
-witness. `native_decide` asks the compiler to evaluate and trusts the result; it is weaker than a
-kernel proof. The Lean files are at
-github.com/jaredwilder/graham-alspach-sequenceability and the write-up with its compiled PDF is at
-github.com/jaredwilder/unpublished-math-papers.
+Regeneration at 48 threads and at 16 threads produces the same certificate hash.
+
+## Lean verification boundary
+
+The companion Lean files use Mathlib's three standard classical axioms plus one `native_decide` evaluation per witness. That means the finite witness computation is compiler-evaluated rather than reduced entirely by the kernel.
+
+The Lean sources are in `jaredwilder/graham-alspach-sequenceability`; the mathematical writeup and compiled PDF are in `jaredwilder/unpublished-math-papers`.
 
 ## License
 
