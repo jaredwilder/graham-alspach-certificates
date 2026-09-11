@@ -1,0 +1,17 @@
+{
+  "status": "WITNESSES_COMPLETE",
+  "prime": 29,
+  "minimumSize": 21,
+  "maximumSize": 28,
+  "rawSubsets": 1683218,
+  "orbitRepresentatives": 60134,
+  "threads": 16,
+  "greedyTrials": 1904057,
+  "greedyNodes": 36245840,
+  "annealRestarts": 4,
+  "annealSteps": 117621,
+  "elapsedMs": 16277,
+  "certificatePath": "evidence/round4-discovery/graham-z29/witnesses-regenerated-16threads.tsv",
+  "rawBySize": {"21":1184040,"22":376740,"23":98280,"24":20475,"25":3276,"26":378,"27":28,"28":1},
+  "representativesBySize": {"21":42288,"22":13468,"23":3510,"24":735,"25":117,"26":14,"27":1,"28":1}
+}

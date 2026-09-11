@@ -1,0 +1,5 @@
+# ERDOSFIRE_GRAHAM_Z73_WITNESSES_V2
+# theorem_scope=subsets_of_Z73_nonzero_of_sizes_72_through_72
+# orbit_action=multiplication_by_nonzero_residue_mod_73
+mask	size	total	ordering	greedy_trials	greedy_nodes	anneal_restarts	anneal_steps
+0xffffffffffffffffff	72	0	25,67,39,12,59,38,18,45,32,70,60,7,15,20,58,71,49,19,17,66,8,56,57,63,40,28,29,37,35,44,61,10,21,62,55,1,53,16,48,2,64,23,72,30,51,14,22,31,3,65,36,46,9,33,34,27,4,26,52,47,6,24,13,68,54,5,50,69,11,41,42,43	122880	7291830	61532	1845089701

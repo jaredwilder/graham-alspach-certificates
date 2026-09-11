@@ -1,0 +1,17 @@
+{
+  "status": "WITNESSES_COMPLETE",
+  "prime": 43,
+  "minimumSize": 36,
+  "maximumSize": 42,
+  "rawSubsets": 6220768,
+  "orbitRepresentatives": 148157,
+  "threads": 24,
+  "greedyTrials": 235787628,
+  "greedyNodes": 7236256546,
+  "annealRestarts": 33049,
+  "annealSteps": 953751339,
+  "elapsedMs": 970926,
+  "certificatePath": "/mnt/c/Users/jared/Local Sites/woocommerce-enterprise/erdosfire/evidence/round4-discovery/graham-z43/witnesses.tsv",
+  "rawBySize": {"36":5245786,"37":850668,"38":111930,"39":11480,"40":861,"41":42,"42":1},
+  "representativesBySize": {"36":124936,"37":20254,"38":2670,"39":274,"40":21,"41":1,"42":1}
+}

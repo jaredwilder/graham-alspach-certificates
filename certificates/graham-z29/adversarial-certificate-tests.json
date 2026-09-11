@@ -1,0 +1,67 @@
+{
+  "allMutationsRejectedByAllVerifiers": true,
+  "mutations": 4,
+  "results": [
+    {
+      "mutation": "missing_representative",
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "{\n  \"error\": \"size 21 coverage 1184012 expected 1184040\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "~^^\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 103, in main\n    raise AssertionError(f\"orbit coverage mismatch: {actual_by_size} != {expected_by_size}\")\nAssertionError: orbit coverage mismatch: {21: 1184012, 22: 376740, 23: 98280, 24: 20475, 25: 3276, 26: 378, 27: 28, 28: 1} != {21: 1184040, 22: 376740, 23: 98280, 24: 20475, 25: 3276, 26: 378, 27: 28, 28: 1}"
+        }
+      }
+    },
+    {
+      "mutation": "duplicate_representative",
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "{\n  \"error\": \"row 2 duplicate representative 0x1fffff\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "H-AUTOPILOT-ROUND3-ADVERSARIAL-RECOVERED-2026-07-14/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 127, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 94, in main\n    raise AssertionError(f\"row {row_count}: duplicate orbit\")\nAssertionError: row 2: duplicate orbit"
+        }
+      }
+    },
+    {
+      "mutation": "invalid_ordering_duplicate_element",
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "{\n  \"error\": \"row 1 representative invalid: duplicate residue 5\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "07-14/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 88, in main\n    check_witness(mask, sequence)\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 43, in check_witness\n    raise AssertionError(\"sequence is not exactly the represented set\")\nAssertionError: sequence is not exactly the represented set"
+        }
+      }
+    },
+    {
+      "mutation": "invalid_total_field",
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "{\n  \"error\": \"row 1 invalid total field\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "T-ROUND3-ADVERSARIAL-RECOVERED-2026-07-14/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 127, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 87, in main\n    raise AssertionError(f\"row {row_count}: invalid subset total\")\nAssertionError: row 1: invalid subset total"
+        }
+      }
+    }
+  ],
+  "status": "PASS"
+}

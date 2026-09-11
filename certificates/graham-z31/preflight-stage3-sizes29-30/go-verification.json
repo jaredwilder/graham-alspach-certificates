@@ -1,0 +1,28 @@
+{
+  "status": "VERIFIED",
+  "prime": 31,
+  "scope": {
+    "maximumSize": 30,
+    "minimumSize": 29
+  },
+  "certificate": "/mnt/c/Users/jared/AppData/Local/Temp/claude/C--Users-jared-Local-Sites-woocommerce-enterprise/dfc2d9e1-4362-4354-ab73-80014eb34199/scratchpad/z31_small_witnesses.tsv",
+  "certificateSha256": "491309b7be34f7e547744f6852d6388ca6dc6eda2529502286e7a76ce8cce8b9",
+  "verifierSha256": "b95e13e06bd76d9e4f07b2aceaed389a7278693ea73da46509f379ab38a4a894",
+  "representativeRows": 2,
+  "uniqueCoveredSubsets": 31,
+  "expectedCoveredSubsets": 31,
+  "coverageBySize": {
+    "29": 30,
+    "30": 1
+  },
+  "expectedBySize": {
+    "29": 30,
+    "30": 1
+  },
+  "scaledWitnessChecks": 60,
+  "orbitSizeHistogram": {
+    "1": 1,
+    "30": 1
+  },
+  "elapsedMilliseconds": 17
+}

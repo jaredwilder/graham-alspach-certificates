@@ -1,0 +1,53 @@
+{
+  "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+  "claimStatus": "FINITE_EXISTENCE_EVIDENCE_ONLY",
+  "goVerifier": {
+    "coveredSubsets": 1683218,
+    "verifierSha256": "2bc017acfe39fa7967f41e577a28cab6df221d8af0989a04f72e7fd54e70a75d"
+  },
+  "ir": {
+    "group": {
+      "excludedElements": [
+        0
+      ],
+      "kind": "ZMod",
+      "modulus": 29
+    },
+    "kind": "finite-additive-ordering",
+    "leanDefinition": "erdosfireGrahamP29Sizes21To25",
+    "modelAuthority": false,
+    "ordering": {
+      "partialSums": "nonempty",
+      "partialSumsPairwiseDistinct": true,
+      "usesEachElementExactlyOnce": true
+    },
+    "problemId": "problem_000000_1k0xmx3prsv",
+    "schemaVersion": "1.0.0",
+    "sourceProblemId": "graham-rearrangement-p29-sizes21-25",
+    "subsetCardinalities": [
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "truthAuthority": "independent_certificate_verifiers"
+  },
+  "irSha256": "4e9c51608610711c610e1ef9a0d162d2b8e6451e48f3efabce8272ef8a47df26",
+  "leanCompiled": true,
+  "leanSourceSha256": "0357bf9932e96f666b9eadc6ab43b9cacda7316fd4b26f90fef3c62e68a7e94a",
+  "problemSha256": "891804e17ecee819304e5c0ed37e8721dbf0dbe9ce1c2d3c533b9d425a9d032b",
+  "pythonVerifier": {
+    "coveredSubsets": 1683218,
+    "verifierSha256": "1b8a4055d700df7f2b78df22edcbf3a674088f4a30108b61ccbf95ffe7f493cf"
+  },
+  "requestedSizes": [
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "status": "CERTIFICATE_ROUTE_VERIFIED",
+  "terminalMathWin": false
+}

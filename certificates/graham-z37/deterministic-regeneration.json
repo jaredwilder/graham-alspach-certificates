@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "note": "Three independent from-source generator runs (not two), all with threads=24 (this machine's WSL nproc; no thread-count variation was tested, unlike graham-z29's 48-vs-16 test, since only one thread count was available here). Run 1 was the run committed as witnesses.tsv. Run 2 (\"regenerate\" pass, mirroring round4_release.py's provenance gate) and Run 3 (generator-summary.json/generator-progress.log in this directory) were both later, fully independent re-invocations of the same generate_witnesses binary against the same certificate path arguments.",
+  "run1Sha256": "edb41b88b399d5aba27bd9cf77ee4fb920786f6bd077013806beb5c2d69d3a97",
+  "run2Sha256": "edb41b88b399d5aba27bd9cf77ee4fb920786f6bd077013806beb5c2d69d3a97",
+  "run3Sha256": "edb41b88b399d5aba27bd9cf77ee4fb920786f6bd077013806beb5c2d69d3a97",
+  "committedWitnessesSha256": "edb41b88b399d5aba27bd9cf77ee4fb920786f6bd077013806beb5c2d69d3a97",
+  "allIdentical": true,
+  "threadCounts": [24, 24, 24]
+}

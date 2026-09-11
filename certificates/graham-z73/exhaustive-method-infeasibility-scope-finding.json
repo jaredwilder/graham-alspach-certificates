@@ -1,0 +1,827 @@
+{
+  "generatedBy": "python math.comb (exact) + oracle/data_engine/omega_ladder/jigsaw.py fit_cost_model/predict (live-refit, n=9 real runs)",
+  "generatedAtUtc": "2026-07-17T13:58:47.483545Z",
+  "target": "Z_73 (prime=73, N=P-1=72), sizes 1 through 72",
+  "conclusion": "Sizes 1-20 are already closed for every prime in this family, including 73, by the published Costa-Della Fiore-Fontana-Vena theorem (PROVEN_CONDITIONAL base case) -- no computation needed. Size 72 is closed (2026-07-17, this session, erdosfire-graham-z73-size72only-classification). Of the remaining open range (21-71): using JIGSAW's cost model IN-DOMAIN ONLY (density >= 0.718, i.e. size >= 52 -- the band it was actually trained on, so its predictions there are trustworthy subject to its own disclosed multiplicative uncertainty), sizes with predicted cost <=180min are: [68, 69, 70, 71, 72]. In-domain sizes exceeding that bound: [52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67]. For OUT-OF-DOMAIN sizes (< 52), the model cannot be trusted at all (see secondary finding below); the exact raw subset count is the only honest signal, and it is conclusive: the largest range this family has ever exhaustively certified (Z_31 sizes 21-30) had rawSubsets=22964087, while out-of-domain sizes here range up to ~4.4e20 (near k=36) -- 13 to 20 orders of magnitude beyond precedent. NOT reachable by the current exhaustive multiplicative-orbit-reduction + witness-certificate method at any practical time budget; this is a structural limit of exhaustive-enumeration-per-orbit-representative against C(72,k)'s combinatorial explosion, not a search-heuristic or thread-count problem.",
+  "secondaryFinding_costModelExtrapolationIsUnreliableOutOfDomain": "JIGSAW's fitted cost model (power law in density, exponent ~37.8) was trained ONLY on real runs at density in [0.718, 1.000]. Applied to a single size below that band, it produces NONSENSE, not just imprecise numbers: size 21 (density 0.292, rawSubsets=7.7e17) is predicted at ~0 minutes -- dangerously wrong, since that many subsets is >30,000x more than this family has ever exhaustively certified. Size 50 (density 0.694, rawSubsets=1.8e18, SMALLER raw count than size 21) is predicted at ~1.8e9 minutes (~3,475 years) -- the model is not consistently biased in one direction, it is genuinely unreliable outside its fitted domain (a known curve-fitting pitfall: a steep power law extrapolated far outside its training range is close to arbitrary). Anyone re-running jigsaw predict for a size below the training density band must not trust predictedMinutes; use exact rawSubsets vs. largest-ever-certified instead (regression-free).",
+  "coveredByBaseTheoremSizes": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "closedSizes": [
+    72
+  ],
+  "inDomainFeasibleSizes_trustworthy": [
+    68,
+    69,
+    70,
+    71,
+    72
+  ],
+  "inDomainButOverBudgetSizes_trustworthy": [
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67
+  ],
+  "outOfDomainSizes_modelUnreliable_groundTruthOnly": [
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ],
+  "trainingDensityBand": [
+    0.718057983319781,
+    1.0
+  ],
+  "largestEverExhaustivelyCertifiedRun": "Z_31 sizes 21-30",
+  "largestEverExhaustivelyCertifiedRawSubsets": 22964087,
+  "costModelAtGenerationTime": {
+    "formula": "ms_per_orbit = 4278.42 * density^37.8066",
+    "sampleSize": 9,
+    "predictionRatioSpread": [
+      0.291,
+      19.293
+    ],
+    "note": "This in-band spread does NOT bound the out-of-band extrapolation error documented above -- they are different failure modes."
+  },
+  "fullTable": [
+    {
+      "size": 1,
+      "rawSubsetsExact": 72,
+      "orbitEstimate": 1,
+      "density": 0.0139,
+      "predictedSeconds": 2.581645897735007e-70,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": true
+    },
+    {
+      "size": 2,
+      "rawSubsetsExact": 2556,
+      "orbitEstimate": 36,
+      "density": 0.0278,
+      "predictedSeconds": 2.2341550428577938e-57,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": true
+    },
+    {
+      "size": 3,
+      "rawSubsetsExact": 59640,
+      "orbitEstimate": 828,
+      "density": 0.0417,
+      "predictedSeconds": 2.3347970546985944e-49,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": true
+    },
+    {
+      "size": 4,
+      "rawSubsetsExact": 1028790,
+      "orbitEstimate": 14289,
+      "density": 0.0556,
+      "predictedSeconds": 2.131703400294845e-43,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": true
+    },
+    {
+      "size": 5,
+      "rawSubsetsExact": 13991544,
+      "orbitEstimate": 194327,
+      "density": 0.0694,
+      "predictedSeconds": 1.3368851311985848e-38,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": true
+    },
+    {
+      "size": 6,
+      "rawSubsetsExact": 156238908,
+      "orbitEstimate": 2169985,
+      "density": 0.0833,
+      "predictedSeconds": 1.4709220755074555e-34,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": true
+    },
+    {
+      "size": 7,
+      "rawSubsetsExact": 1473109704,
+      "orbitEstimate": 20459857,
+      "density": 0.0972,
+      "predictedSeconds": 4.7104736567358105e-31,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": true
+    },
+    {
+      "size": 8,
+      "rawSubsetsExact": 11969016345,
+      "orbitEstimate": 166236338,
+      "density": 0.1111,
+      "predictedSeconds": 5.961630280308111e-28,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 9,
+      "rawSubsetsExact": 85113005120,
+      "orbitEstimate": 1182125071,
+      "density": 0.125,
+      "predictedSeconds": 3.640863143785886e-25,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 10,
+      "rawSubsetsExact": 536211932256,
+      "orbitEstimate": 7447387948,
+      "density": 0.1389,
+      "predictedSeconds": 1.2316265962761752e-22,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 11,
+      "rawSubsetsExact": 3022285436352,
+      "orbitEstimate": 41976186616,
+      "density": 0.1528,
+      "predictedSeconds": 2.5491410105067406e-20,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 12,
+      "rawSubsetsExact": 15363284301456,
+      "orbitEstimate": 213378948631,
+      "density": 0.1667,
+      "predictedSeconds": 3.476951550665753e-18,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 13,
+      "rawSubsetsExact": 70907466006720,
+      "orbitEstimate": 984825916760,
+      "density": 0.1806,
+      "predictedSeconds": 3.3085890878736885e-16,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 14,
+      "rawSubsetsExact": 298824321028320,
+      "orbitEstimate": 4150337792060,
+      "density": 0.1944,
+      "predictedSeconds": 2.2969924325938122e-14,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 15,
+      "rawSubsetsExact": 1155454041309504,
+      "orbitEstimate": 16047972795965,
+      "density": 0.2083,
+      "predictedSeconds": 1.2058776693336258e-12,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 16,
+      "rawSubsetsExact": 4116305022165108,
+      "orbitEstimate": 57170903085626,
+      "density": 0.2222,
+      "predictedSeconds": 4.9286532209791764e-11,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 17,
+      "rawSubsetsExact": 13559593014190944,
+      "orbitEstimate": 188327680752652,
+      "density": 0.2361,
+      "predictedSeconds": 1.6064767856804246e-09,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 18,
+      "rawSubsetsExact": 41432089765583440,
+      "orbitEstimate": 575445691188659,
+      "density": 0.25,
+      "predictedSeconds": 4.260488555324202e-08,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 19,
+      "rawSubsetsExact": 117754360386395040,
+      "orbitEstimate": 1635477227588820,
+      "density": 0.2639,
+      "predictedSeconds": 9.350599441983654e-07,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 20,
+      "rawSubsetsExact": 312049055023946856,
+      "orbitEstimate": 4334014653110373,
+      "density": 0.2778,
+      "predictedSeconds": 1.7229774377959763e-05,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 21,
+      "rawSubsetsExact": 772692898154535072,
+      "orbitEstimate": 10731845807701876,
+      "density": 0.2917,
+      "predictedSeconds": 0.0002698724402322047,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 22,
+      "rawSubsetsExact": 1791242627540058576,
+      "orbitEstimate": 24878369826945256,
+      "density": 0.3056,
+      "predictedSeconds": 0.003631841873573337,
+      "predictedMinutes": 0.0,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 23,
+      "rawSubsetsExact": 3894005712043605600,
+      "orbitEstimate": 54083412667272304,
+      "density": 0.3194,
+      "predictedSeconds": 0.04238683247894731,
+      "predictedMinutes": 0.001,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 24,
+      "rawSubsetsExact": 7950261662089028100,
+      "orbitEstimate": 110420300862347616,
+      "density": 0.3333,
+      "predictedSeconds": 0.43252391798554246,
+      "predictedMinutes": 0.007,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 25,
+      "rawSubsetsExact": 15264502391210933952,
+      "orbitEstimate": 212006977655707424,
+      "density": 0.3472,
+      "predictedSeconds": 3.8866494795813136,
+      "predictedMinutes": 0.065,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 26,
+      "rawSubsetsExact": 27593523553342842144,
+      "orbitEstimate": 383243382685317248,
+      "density": 0.3611,
+      "predictedSeconds": 30.950820240545205,
+      "predictedMinutes": 0.516,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 27,
+      "rawSubsetsExact": 47011188276065582912,
+      "orbitEstimate": 652933170500910848,
+      "density": 0.375,
+      "predictedSeconds": 219.65029212770307,
+      "predictedMinutes": 3.661,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 28,
+      "rawSubsetsExact": 75553695443676829680,
+      "orbitEstimate": 1049356881162178176,
+      "density": 0.3889,
+      "predictedSeconds": 1396.090167068394,
+      "predictedMinutes": 23.268,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 29,
+      "rawSubsetsExact": 114633193086957948480,
+      "orbitEstimate": 1592127681763304960,
+      "density": 0.4028,
+      "predictedSeconds": 7982.5038638268115,
+      "predictedMinutes": 133.042,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 30,
+      "rawSubsetsExact": 164307576757973059488,
+      "orbitEstimate": 2282049677194070272,
+      "density": 0.4167,
+      "predictedSeconds": 41221.35862432617,
+      "predictedMinutes": 687.023,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 31,
+      "rawSubsetsExact": 222610265284995758016,
+      "orbitEstimate": 3091809240069385728,
+      "density": 0.4306,
+      "predictedSeconds": 192926.62910750465,
+      "predictedMinutes": 3215.444,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 32,
+      "rawSubsetsExact": 285219402396400814958,
+      "orbitEstimate": 3961380588838900224,
+      "density": 0.4444,
+      "predictedSeconds": 820944.7183313383,
+      "predictedMinutes": 13682.412,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 33,
+      "rawSubsetsExact": 345720487753213109040,
+      "orbitEstimate": 4801673441016848384,
+      "density": 0.4583,
+      "predictedSeconds": 3184972.0466069975,
+      "predictedMinutes": 53082.867,
+      "predictedYears": 0.1,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 34,
+      "rawSubsetsExact": 396561735952215036840,
+      "orbitEstimate": 5507801888225209344,
+      "density": 0.4722,
+      "predictedSeconds": 11294128.91821464,
+      "predictedMinutes": 188235.482,
+      "predictedYears": 0.4,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 35,
+      "rawSubsetsExact": 430552741890976325712,
+      "orbitEstimate": 5979899192930227200,
+      "density": 0.4861,
+      "predictedSeconds": 36687669.211407244,
+      "predictedMinutes": 611461.154,
+      "predictedYears": 1.2,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 36,
+      "rawSubsetsExact": 442512540276836779204,
+      "orbitEstimate": 6146007503844955136,
+      "density": 0.5,
+      "predictedSeconds": 109386135.83579518,
+      "predictedMinutes": 1823102.264,
+      "predictedYears": 3.5,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 37,
+      "rawSubsetsExact": 430552741890976325712,
+      "orbitEstimate": 5979899192930227200,
+      "density": 0.5139,
+      "predictedSeconds": 299869279.46838284,
+      "predictedMinutes": 4997821.324,
+      "predictedYears": 9.5,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 38,
+      "rawSubsetsExact": 396561735952215036840,
+      "orbitEstimate": 5507801888225209344,
+      "density": 0.5278,
+      "predictedSeconds": 756985213.8287215,
+      "predictedMinutes": 12616420.23,
+      "predictedYears": 24.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 39,
+      "rawSubsetsExact": 345720487753213109040,
+      "orbitEstimate": 4801673441016848384,
+      "density": 0.5417,
+      "predictedSeconds": 1761968382.9976778,
+      "predictedMinutes": 29366139.717,
+      "predictedYears": 55.9,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 40,
+      "rawSubsetsExact": 285219402396400814958,
+      "orbitEstimate": 3961380588838900224,
+      "density": 0.5556,
+      "predictedSeconds": 3785732455.738075,
+      "predictedMinutes": 63095540.929,
+      "predictedYears": 120.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 41,
+      "rawSubsetsExact": 222610265284995758016,
+      "orbitEstimate": 3091809240069385728,
+      "density": 0.5694,
+      "predictedSeconds": 7515341116.811555,
+      "predictedMinutes": 125255685.28,
+      "predictedYears": 238.3,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 42,
+      "rawSubsetsExact": 164307576757973059488,
+      "orbitEstimate": 2282049677194070272,
+      "density": 0.5833,
+      "predictedSeconds": 13795051943.353157,
+      "predictedMinutes": 229917532.389,
+      "predictedYears": 437.4,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 43,
+      "rawSubsetsExact": 114633193086957948480,
+      "orbitEstimate": 1592127681763304960,
+      "density": 0.5972,
+      "predictedSeconds": 23427600464.271687,
+      "predictedMinutes": 390460007.738,
+      "predictedYears": 742.9,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 44,
+      "rawSubsetsExact": 75553695443676829680,
+      "orbitEstimate": 1049356881162178176,
+      "density": 0.6111,
+      "predictedSeconds": 36824966538.75752,
+      "predictedMinutes": 613749442.313,
+      "predictedYears": 1167.7,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 45,
+      "rawSubsetsExact": 47011188276065582912,
+      "orbitEstimate": 652933170500910848,
+      "density": 0.625,
+      "predictedSeconds": 53588787668.68258,
+      "predictedMinutes": 893146461.145,
+      "predictedYears": 1699.3,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 46,
+      "rawSubsetsExact": 27593523553342842144,
+      "orbitEstimate": 383243382685317248,
+      "density": 0.6389,
+      "predictedSeconds": 72203071792.6461,
+      "predictedMinutes": 1203384529.877,
+      "predictedYears": 2289.5,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 47,
+      "rawSubsetsExact": 15264502391210933952,
+      "orbitEstimate": 212006977655707424,
+      "density": 0.6528,
+      "predictedSeconds": 90062832068.60837,
+      "predictedMinutes": 1501047201.143,
+      "predictedYears": 2855.9,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 48,
+      "rawSubsetsExact": 7950261662089028100,
+      "orbitEstimate": 110420300862347616,
+      "density": 0.6667,
+      "predictedSeconds": 103973882769.452,
+      "predictedMinutes": 1732898046.158,
+      "predictedYears": 3297.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 49,
+      "rawSubsetsExact": 3894005712043605600,
+      "orbitEstimate": 54083412667272304,
+      "density": 0.6806,
+      "predictedSeconds": 111043050777.35478,
+      "predictedMinutes": 1850717512.956,
+      "predictedYears": 3521.2,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 50,
+      "rawSubsetsExact": 1791242627540058576,
+      "orbitEstimate": 24878369826945256,
+      "density": 0.6944,
+      "predictedSeconds": 109638042753.88446,
+      "predictedMinutes": 1827300712.565,
+      "predictedYears": 3476.6,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 51,
+      "rawSubsetsExact": 772692898154535072,
+      "orbitEstimate": 10731845807701876,
+      "density": 0.7083,
+      "predictedSeconds": 99990064083.5138,
+      "predictedMinutes": 1666501068.059,
+      "predictedYears": 3170.7,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 52,
+      "rawSubsetsExact": 312049055023946856,
+      "orbitEstimate": 4334014653110373,
+      "density": 0.7222,
+      "predictedSeconds": 84139903099.91591,
+      "predictedMinutes": 1402331718.332,
+      "predictedYears": 2668.1,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 53,
+      "rawSubsetsExact": 117754360386395040,
+      "orbitEstimate": 1635477227588820,
+      "density": 0.7361,
+      "predictedSeconds": 65239711994.64517,
+      "predictedMinutes": 1087328533.244,
+      "predictedYears": 2068.7,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 54,
+      "rawSubsetsExact": 41432089765583440,
+      "orbitEstimate": 575445691188659,
+      "density": 0.75,
+      "predictedSeconds": 46535194073.83352,
+      "predictedMinutes": 775586567.897,
+      "predictedYears": 1475.6,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 55,
+      "rawSubsetsExact": 13559593014190944,
+      "orbitEstimate": 188327680752652,
+      "density": 0.7639,
+      "predictedSeconds": 30476796102.72589,
+      "predictedMinutes": 507946601.712,
+      "predictedYears": 966.4,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 56,
+      "rawSubsetsExact": 4116305022165108,
+      "orbitEstimate": 57170903085626,
+      "density": 0.7778,
+      "predictedSeconds": 18284346384.11575,
+      "predictedMinutes": 304739106.402,
+      "predictedYears": 579.8,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 57,
+      "rawSubsetsExact": 1155454041309504,
+      "orbitEstimate": 16047972795965,
+      "density": 0.7917,
+      "predictedSeconds": 10021604461.54487,
+      "predictedMinutes": 167026741.026,
+      "predictedYears": 317.8,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 58,
+      "rawSubsetsExact": 298824321028320,
+      "orbitEstimate": 4150337792060,
+      "density": 0.8056,
+      "predictedSeconds": 5002174329.341529,
+      "predictedMinutes": 83369572.156,
+      "predictedYears": 158.6,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 59,
+      "rawSubsetsExact": 70907466006720,
+      "orbitEstimate": 984825916760,
+      "density": 0.8194,
+      "predictedSeconds": 2265226161.7561493,
+      "predictedMinutes": 37753769.363,
+      "predictedYears": 71.8,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 60,
+      "rawSubsetsExact": 15363284301456,
+      "orbitEstimate": 213378948631,
+      "density": 0.8333,
+      "predictedSeconds": 926537310.4819759,
+      "predictedMinutes": 15442288.508,
+      "predictedYears": 29.4,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 61,
+      "rawSubsetsExact": 3022285436352,
+      "orbitEstimate": 41976186616,
+      "density": 0.8472,
+      "predictedSeconds": 340496024.8674429,
+      "predictedMinutes": 5674933.748,
+      "predictedYears": 10.8,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 62,
+      "rawSubsetsExact": 536211932256,
+      "orbitEstimate": 7447387948,
+      "density": 0.8611,
+      "predictedSeconds": 111711426.38711822,
+      "predictedMinutes": 1861857.106,
+      "predictedYears": 3.5,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 63,
+      "rawSubsetsExact": 85113005120,
+      "orbitEstimate": 1182125071,
+      "density": 0.875,
+      "predictedSeconds": 32469056.312674828,
+      "predictedMinutes": 541150.939,
+      "predictedYears": 1.0,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 64,
+      "rawSubsetsExact": 11969016345,
+      "orbitEstimate": 166236338,
+      "density": 0.8889,
+      "predictedSeconds": 8281470.159699669,
+      "predictedMinutes": 138024.503,
+      "predictedYears": 0.3,
+      "feasibleUnderLargestCertifiedRawBudget": false
+    },
+    {
+      "size": 65,
+      "rawSubsetsExact": 1473109704,
+      "orbitEstimate": 20459857,
+      "density": 0.9028,
+      "predictedSeconds": 1831682.6487980231,
+      "predictedMinutes": 30528.044,
+      "predictedYears": 0.1,
+      "feasibleUnderLargestCertifiedRawBudget": true
+    },
+    {
+      "size": 66,
+      "rawSubsetsExact": 156238908,
+      "orbitEstimate": 2169985,
+      "density": 0.9167,
+      "predictedSeconds": 346006.1915743491,
+      "predictedMinutes": 5766.77,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": true
+    },
+    {
+      "size": 67,
+      "rawSubsetsExact": 13991544,
+      "orbitEstimate": 194327,
+      "density": 0.9306,
+      "predictedSeconds": 54710.41712386074,
+      "predictedMinutes": 911.84,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": true
+    },
+    {
+      "size": 68,
+      "rawSubsetsExact": 1028790,
+      "orbitEstimate": 14289,
+      "density": 0.9444,
+      "predictedSeconds": 7043.530514874442,
+      "predictedMinutes": 117.392,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": true
+    },
+    {
+      "size": 69,
+      "rawSubsetsExact": 59640,
+      "orbitEstimate": 828,
+      "density": 0.9583,
+      "predictedSeconds": 708.792867830017,
+      "predictedMinutes": 11.813,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": true
+    },
+    {
+      "size": 70,
+      "rawSubsetsExact": 2556,
+      "orbitEstimate": 36,
+      "density": 0.9722,
+      "predictedSeconds": 53.09368802847744,
+      "predictedMinutes": 0.885,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": true
+    },
+    {
+      "size": 71,
+      "rawSubsetsExact": 72,
+      "orbitEstimate": 1,
+      "density": 0.9861,
+      "predictedSeconds": 2.521393256262681,
+      "predictedMinutes": 0.042,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": true
+    },
+    {
+      "size": 72,
+      "rawSubsetsExact": 1,
+      "orbitEstimate": 1,
+      "density": 1.0,
+      "predictedSeconds": 4.278419142159684,
+      "predictedMinutes": 0.071,
+      "predictedYears": 0.0,
+      "feasibleUnderLargestCertifiedRawBudget": true
+    }
+  ]
+}

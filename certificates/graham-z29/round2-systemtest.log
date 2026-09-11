@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "checks": 36,
+  "proofStatus": "PROVED",
+  "disproofStatus": "REFUTED",
+  "round2": {
+    "proofCandidates": 1,
+    "disproofCandidates": 1
+  },
+  "autopilot": {
+    "cycles": 2,
+    "stoppedBecause": "IDLE",
+    "processedProblems": 1
+  }
+}

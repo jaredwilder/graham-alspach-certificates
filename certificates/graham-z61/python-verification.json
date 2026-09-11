@@ -1,0 +1,38 @@
+{
+  "certificateSha256": "747bb14572f168dfda6d107b126826787316d9f405193c2d60ba0388018d6a9b",
+  "coverageBySize": {
+    "56": 487635,
+    "57": 34220,
+    "58": 1770,
+    "59": 60,
+    "60": 1
+  },
+  "coveredSubsets": 523686,
+  "elapsedSeconds": 7.015864,
+  "expectedBySize": {
+    "56": 487635,
+    "57": 34220,
+    "58": 1770,
+    "59": 60,
+    "60": 1
+  },
+  "method": "independent canonical-orbit accounting plus representative witness validation",
+  "orbitSizeHistogram": {
+    "1": 1,
+    "15": 1,
+    "20": 1,
+    "30": 15,
+    "60": 8720
+  },
+  "prime": 61,
+  "representativeRows": 8738,
+  "representativesBySize": {
+    "56": 8135,
+    "57": 571,
+    "58": 30,
+    "59": 1,
+    "60": 1
+  },
+  "status": "VERIFIED",
+  "verifierSha256": "ae30f866739afb5d86df722fd1fd2a9bcb01774068caffdcb5a8332298f60d77"
+}

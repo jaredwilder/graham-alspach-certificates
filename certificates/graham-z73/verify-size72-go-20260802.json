@@ -1,0 +1,25 @@
+{
+  "status": "VERIFIED",
+  "prime": 73,
+  "scope": {
+    "maximumSize": 72,
+    "minimumSize": 72
+  },
+  "certificate": "/mnt/c/Users/jared/Local Sites/woocommerce-enterprise/oracle/erdosfire/oracle/tools/frontier-math/round4/graham-z73/run4-size72-alone-certificate.tsv",
+  "certificateSha256": "16281c7bb84a42219bb57ea83ad1cd3425a2f133aeacb5820ec284157e19b69d",
+  "verifierSha256": "cfd4c4af3a4268a09d20dd9af577cc69291d2044f60f5dc81483a70a0e8e3cce",
+  "representativeRows": 1,
+  "uniqueCoveredSubsets": 1,
+  "expectedCoveredSubsets": 1,
+  "coverageBySize": {
+    "72": 1
+  },
+  "expectedBySize": {
+    "72": 1
+  },
+  "scaledWitnessChecks": 72,
+  "orbitSizeHistogram": {
+    "1": 1
+  },
+  "elapsedMilliseconds": 74
+}

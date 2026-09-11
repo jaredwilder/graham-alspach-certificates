@@ -1,0 +1,163 @@
+{
+  "allApplicableTestsPassed": true,
+  "results": [
+    {
+      "detail": {
+        "producedFalseVerified": false,
+        "returnCode": -15,
+        "stdoutBytesCaptured": 0,
+        "stillRunningBeforeKill": true
+      },
+      "status": "PASS",
+      "test": "kill_mid_verification[go_full_expansion]"
+    },
+    {
+      "detail": {
+        "producedFalseVerified": false,
+        "returnCode": -15,
+        "stdoutBytesCaptured": 0,
+        "stillRunningBeforeKill": true
+      },
+      "status": "PASS",
+      "test": "kill_mid_verification[python_orbit_accounting]"
+    },
+    {
+      "detail": {
+        "elapsedSecondsBeforeRaise": 0.0656,
+        "timeoutSeconds": 0.05
+      },
+      "status": "PASS",
+      "test": "force_timeout[go_full_expansion]"
+    },
+    {
+      "detail": {
+        "elapsedSecondsBeforeRaise": 0.0552,
+        "timeoutSeconds": 0.05
+      },
+      "status": "PASS",
+      "test": "force_timeout[python_orbit_accounting]"
+    },
+    {
+      "detail": {
+        "elapsedSeconds": {
+          "go_full_expansion": 1.4342,
+          "python_orbit_accounting": 8.6839
+        }
+      },
+      "status": "PASS",
+      "test": "genuine_baseline_capture"
+    },
+    {
+      "detail": {
+        "fullBytes": 994,
+        "truncatedBytes": 248
+      },
+      "status": "PASS",
+      "test": "truncate_stdout[go_full_expansion@0.25]"
+    },
+    {
+      "detail": {
+        "fullBytes": 994,
+        "truncatedBytes": 497
+      },
+      "status": "PASS",
+      "test": "truncate_stdout[go_full_expansion@0.5]"
+    },
+    {
+      "detail": {
+        "fullBytes": 994,
+        "truncatedBytes": 745
+      },
+      "status": "PASS",
+      "test": "truncate_stdout[go_full_expansion@0.75]"
+    },
+    {
+      "detail": {
+        "fullBytes": 994,
+        "truncatedBytes": 984
+      },
+      "status": "PASS",
+      "test": "truncate_stdout[go_full_expansion@0.99]"
+    },
+    {
+      "detail": {
+        "fullBytes": 964,
+        "truncatedBytes": 241
+      },
+      "status": "PASS",
+      "test": "truncate_stdout[python_orbit_accounting@0.25]"
+    },
+    {
+      "detail": {
+        "fullBytes": 964,
+        "truncatedBytes": 482
+      },
+      "status": "PASS",
+      "test": "truncate_stdout[python_orbit_accounting@0.5]"
+    },
+    {
+      "detail": {
+        "fullBytes": 964,
+        "truncatedBytes": 723
+      },
+      "status": "PASS",
+      "test": "truncate_stdout[python_orbit_accounting@0.75]"
+    },
+    {
+      "detail": {
+        "fullBytes": 964,
+        "truncatedBytes": 954
+      },
+      "status": "PASS",
+      "test": "truncate_stdout[python_orbit_accounting@0.99]"
+    },
+    {
+      "detail": {
+        "note": "sanity baseline"
+      },
+      "status": "PASS",
+      "test": "cross_check_genuine_receipts_agree"
+    },
+    {
+      "detail": {
+        "mechanism": "round4_release.py verify() cross-check",
+        "reason": "verifiers disagree on certificate hash"
+      },
+      "status": "PASS",
+      "test": "corrupt_receipt_hash_detected"
+    },
+    {
+      "detail": {
+        "mechanism": "round4_release.py verify() cross-check",
+        "reason": "verifiers disagree on coverage"
+      },
+      "status": "PASS",
+      "test": "corrupt_receipt_coverage_detected"
+    },
+    {
+      "detail": {
+        "mechanism": "round4_release.py verify() cross-check",
+        "note": "go receipt reused as the py slot; schema field-name mismatch (uniqueCoveredSubsets vs coveredSubsets) is what trips the check even though the hash agrees trivially with itself",
+        "reason": "verifiers disagree on coverage"
+      },
+      "status": "PASS",
+      "test": "duplicate_worker_result_detected"
+    },
+    {
+      "detail": {
+        "reason": "no shard concept exists anywhere in this pipeline (grepped generate_witnesses.cpp, both verifiers, and round4_release.py for 'shard': zero matches); certificate is a single atomically-renamed TSV file read by a single sequential reader in each verifier."
+      },
+      "status": "N/A",
+      "test": "shards_complete_out_of_order"
+    },
+    {
+      "detail": {
+        "reason": "no resume/checkpoint mechanism exists anywhere in this pipeline (grepped the whole graham-z29 tool directory for 'resume'/'checkpoint': zero matches); round4_release.py exposes exactly verify/regenerate/full, each a single fresh run."
+      },
+      "status": "N/A",
+      "test": "toolchain_change_between_resume"
+    }
+  ],
+  "status": "PASS",
+  "tests": 19
+}

@@ -1,0 +1,38 @@
+total data rows in file: 298344
+  rows with size=29: 231880
+  rows with size=30: 54132
+  rows with size=31: 10472
+  rows with size=32: 1641
+  rows with size=33: 199
+  rows with size=34: 18
+  rows with size=35: 1
+  rows with size=36: 1
+
+--- size=29 sample (file line 5) ---
+mask = 0x01fffffff = 536870911 (binary popcount check follows)
+popcount(mask) = 29, stated size = 29 -> OK
+sum(members) mod 37 = 28, stated total = 28 -> OK
+ordering length = 29 (expected 29), ordering as a set == members set -> True -> OK
+partial-sum walk (0..36, s_0=0 excluded from the count) -> OK, all partial sums nonzero/distinct (final-zero rule applied correctly)
+
+--- size=33 sample (file line 296085) ---
+mask = 0x77fffdfff = 32212246527 (binary popcount check follows)
+popcount(mask) = 33, stated size = 33 -> OK
+sum(members) mod 37 = 29, stated total = 29 -> OK
+ordering length = 33 (expected 33), ordering as a set == members set -> True -> OK
+partial-sum walk (0..36, s_0=0 excluded from the count) -> OK, all partial sums nonzero/distinct (final-zero rule applied correctly)
+
+--- size=36 (the FULL set, unique) (file line 298348) ---
+mask = 0xfffffffff = 68719476735 (binary popcount check follows)
+popcount(mask) = 36, stated size = 36 -> OK
+sum(members) mod 37 = 0, stated total = 0 -> OK
+ordering length = 36 (expected 36), ordering as a set == members set -> True -> OK
+partial-sum walk (0..36, s_0=0 excluded from the count) -> OK, all partial sums nonzero/distinct (final-zero rule applied correctly)
+
+all sampled rows independently verified OK: True
+
+independent sum(C(36,k) for k in 29..36) = 10739176
+independent per-size C(36,k): {29: 8347680, 30: 1947792, 31: 376992, 32: 58905, 33: 7140, 34: 630, 35: 36, 36: 1}
+compared against claimed total 10739176: MATCH
+
+FINAL: PASS

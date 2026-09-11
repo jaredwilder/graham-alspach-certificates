@@ -1,0 +1,42 @@
+{
+  "boundary": "Every representative witness is kernel-checked; orbit coverage remains independently checked outside Lean.",
+  "certificate": "C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\erdosfire\\evidence\\round4-discovery\\graham-z29\\witnesses.tsv",
+  "certificate_sha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+  "claim_status": "FINITE_EXISTENCE_EVIDENCE_ONLY",
+  "lean_witness_validity": {
+    "compile_receipt": "C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\erdosfire\\oracle\\lean\\mathlib-pinned\\generated-p29-full\\compile-receipt.json",
+    "compile_receipt_sha256": "025918ed628d84c81d9965259cfb2d8981bd73857e83ee6e54df885b7dd87172",
+    "manifest_sha256": "3854cf16d2572842257efb2824578168ec63463263e52eefd1e79324580a24a5",
+    "rows": 60134,
+    "shards": 470,
+    "status": "KERNEL_CHECKED_ALL_ROWS"
+  },
+  "orbit_coverage": {
+    "authority": "independent_python_orbit_accounting",
+    "coverage_by_size": {
+      "21": 1184040,
+      "22": 376740,
+      "23": 98280,
+      "24": 20475,
+      "25": 3276,
+      "26": 378,
+      "27": 28,
+      "28": 1
+    },
+    "covered_subsets": 1683218,
+    "verifier_sha256": "1b8a4055d700df7f2b78df22edcbf3a674088f4a30108b61ccbf95ffe7f493cf"
+  },
+  "p29_scope": {
+    "covered_subsets": 1682811,
+    "sizes": [
+      21,
+      22,
+      23,
+      24,
+      25
+    ]
+  },
+  "receipt_sha256": "636cc2ef4d21c9a88785822f6a87c26bfc8a0580ec0737a42e1d2f906cfb190f",
+  "schema": "erdosfire.full-lean-witness-certificate.v1",
+  "terminalMathWin": false
+}

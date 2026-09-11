@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "purpose": "Z_73 needs N=P-1=72 element-membership bits and P=73 residue-tracking bits, both exceeding the uint64_t/uint64 ceiling every prior fork (Z_37 through Z_61) relied on. This fork widened the C++ generator to unsigned __int128 (mask_t) and the Go verifier to a two-word mask128{lo,hi uint64} struct. The Z_29 sizes-21-28 regression (see regression-z29.json) proves the widening is a byte-identical no-op on the OLD narrow-mask path (every real mask value there has hi==0 always, since p-1=28 < 64) -- it does NOT and cannot exercise the NEW high-word code path (bits 64+), since no mask in that regression ever sets a bit past position 27. This file records the standalone check that specifically targets that new path, using P=67 (N=66, genuinely > 64 bits) as a throwaway, disposable self-test prime -- NOT a real classification target, no claim is made about Z_67 itself, and no evidence/round4-discovery/graham-z67/ directory was created.",
+  "toolSourceHashes": {
+    "generate_witnesses.cpp": "d0bb8e35d012d8f0f107facfe26435e345017435418268259cd7ea9fcb231163",
+    "verify_witnesses.go": "cfd4c4af3a4268a09d20dd9af577cc69291d2044f60f5dc81483a70a0e8e3cce",
+    "note": "hashes of the exact source files as they stood when this self-test ran, computed independently via sha256sum (Windows Git Bash), before the real Z_73 sizes 69-72 run"
+  },
+  "legC_fullSetCase": {
+    "description": "P=67, size 66 ONLY (the true full set Z_67\\{0}, mask = 2**66-1, orbit-size-1 fixed point of the scaling action -- the exact class of case the Z_61 generator's SALVAGE PASS was built for, and the case most likely to expose a high-word bug since EVERY bit 0..65 is set, spanning both the lo and hi 64-bit halves of mask_t/mask128 simultaneously).",
+    "command": "./generate_witnesses_p67widthtest witnesses.tsv 24 66 66  (throwaway binary compiled with -DPRIME=67 -DMIN_K_DEFAULT=1 -DMAX_K_DEFAULT=2, CLI args override the size range to 66 66)",
+    "generatorResult": {
+      "status": "WITNESSES_COMPLETE",
+      "prime": 67,
+      "minimumSize": 66,
+      "maximumSize": 66,
+      "rawSubsets": 1,
+      "orbitRepresentatives": 1,
+      "threads": 1,
+      "greedyTrials": 4096,
+      "greedyNodes": 221953,
+      "annealRestarts": 2699,
+      "annealSteps": 80968392,
+      "elapsedMs": 25703,
+      "solvedVia": "primary anneal_search phase (restarts=2699 of a 5000 budget) -- did NOT need the unit-scaling fallback or the salvage pass this time; still fully exercised the wide-mask arithmetic throughout valid_ordering/collision_score/anneal_search and the fold_seed_term RNG-seed folding, since the mask's high 64 bits are nonzero for this case (bits 64,65 of a 66-bit all-ones mask fall in the high word)"
+    },
+    "certificateSha256": "59d0b2ea5a57e5a306cb4112cdc6cdfc28f55c94b272d44ed16a9a7253f78abc",
+    "maskHex": "0x3ffffffffffffffff",
+    "independentPythonRecompute": {
+      "maskValueDecimal": "73786976294838206463",
+      "expectedValue": "2**66 - 1 = 73786976294838206463",
+      "match": true,
+      "bitLength": 66,
+      "popcount": 66,
+      "note": "computed fresh in Python (arbitrary precision, zero width ceiling of its own) directly from the hex string in the certificate, independent of any C++/Go logic -- confirms the mask is EXACTLY all 66 bits set, no more, no less (rules out both an under-set and an off-by-one-into-bit-66 overflow bug)"
+    },
+    "handVerification": {
+      "method": "from-scratch Python: popcount, member-set reconstruction from raw mask bits, sum(members) mod 67, ordering-is-permutation-of-members, partial-sum walk with the final-zero carve-out",
+      "results": {
+        "popcountMatchesStatedSize": true,
+        "membersEqualFullSet1to66": true,
+        "sumMembersMod67": 0,
+        "statedTotal": 0,
+        "totalMatches": true,
+        "sumRange1to66Crosscheck": "2211 = 67*33, confirming total=0 mod 67 by construction (independent of the certificate)",
+        "orderingIsExactPermutation": true,
+        "orderingHasNoDuplicates": true,
+        "partialSumCollision": null,
+        "finalRunningSum": 0,
+        "finalZeroCorrectlyForced": true
+      }
+    },
+    "goVerifier": {
+      "status": "VERIFIED",
+      "certificateSha256": "59d0b2ea5a57e5a306cb4112cdc6cdfc28f55c94b272d44ed16a9a7253f78abc",
+      "uniqueCoveredSubsets": 1,
+      "expectedCoveredSubsets": 1,
+      "orbitSizeHistogram": {"1": 1},
+      "elapsedMilliseconds": 9
+    },
+    "pythonOrbitAccountingVerifier": {
+      "status": "VERIFIED",
+      "certificateSha256": "59d0b2ea5a57e5a306cb4112cdc6cdfc28f55c94b272d44ed16a9a7253f78abc",
+      "coveredSubsets": 1,
+      "orbitSizeHistogram": {"1": 1}
+    },
+    "genericFromScratchSpotCheck": {
+      "description": "a THIRD, independently-written Python script (generic_spot_check.py, scratchpad-only, not part of the repo) that recomputes the multiplicative orbit via raw modular multiplication (no reuse of scaleMask/scale_mask from either verifier), checks canonicity (mask == min(orbit)) and Lagrange's theorem (orbit size divides P-1)",
+      "result": "size_ok=True total_ok=True perm_ok=True partials_ok=True canonical_ok=True lagrange_ok=True, orbit size 1 (confirmed the true fixed-point degenerate case), ALL ROWS OK: True"
+    },
+    "conclusion": "Three independent implementations (Go mask128, Python arbitrary-precision orbit-accounting, and a third from-scratch Python recomputation) agree exactly on the hardest, highest-value case: a mask with every bit 0..65 set, spanning both 64-bit halves, for the exact orbit-size-1 degenerate scenario the Z_61 fork's real bug was about. This is the strongest available evidence (short of the real Z_73 run itself) that the __int128/mask128 width extension is correct."
+  },
+  "legB_and_legD_disclosedIncomplete": {
+    "description": "Two broader/alternate self-test legs were attempted and NOT completed -- disclosed here, not hidden, since they consumed real compute before being abandoned.",
+    "legB": "P=67 sizes 64-66 combined (33+1+1=35 representatives). This range's density (~0.970, weighted toward size 64) is HIGHER than any real target attempted so far in this family (Z_61's sizes 56-60 was 0.9345) -- an accidentally harder self-test than intended, not a property of the real Z_73 target. Killed after ~154 CPU-minutes with no completion in sight, once Leg C alone had already delivered sufficient targeted evidence for the width-extension question this self-test exists to answer. No certificate was produced; no claim is made from this leg.",
+    "legD": "P=67 size 65 ONLY (a single, non-degenerate but still very dense representative). Ran into its own 300s bash `timeout` wrapper (confirmed exit code 124, i.e. the timeout fired as designed) without converging. This appears to be a property of THIS SPECIFIC mask's search-heuristic landscape (greedy+anneal difficulty is not strictly tied to orbit degeneracy), not a correctness concern -- Leg C already independently confirms the underlying wide-mask arithmetic (which is what this self-test file exists to validate) is correct. No certificate was produced; no claim is made from this leg.",
+    "whyThisIsFineToLeaveIncomplete": "The real, load-bearing question for this self-test is narrow: does the __int128/mask128 arithmetic correctly handle masks with bits set past position 63? Leg C answers that question directly and completely, with independent triangulated verification. Legs B/D would only have added redundant confirmation of the SAME arithmetic on different masks, at a real, escalating compute cost with no sign of near-term convergence -- abandoning them once Leg C's answer was in hand is the disciplined choice, not a gap in the actual verification this file certifies."
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "2.0.0",
+  "benchmark": "ERDOSFIRE Round 2 offline exact-math",
+  "total": 6,
+  "passed": 6,
+  "failed": 0,
+  "falseClosures": 0,
+  "candidateProofs": 3,
+  "candidateDisproofs": 3,
+  "cases": [
+    {
+      "id": "identity-square-plus",
+      "statement": "For every real number x, (x + 1)^2 = x^2 + 2*x + 1.",
+      "expected": "CANDIDATE_PROOF",
+      "observed": "CANDIDATE_PROOF",
+      "passed": true
+    },
+    {
+      "id": "identity-difference-squares",
+      "statement": "For every real number x, (x + 2)*(x - 2) = x^2 - 4.",
+      "expected": "CANDIDATE_PROOF",
+      "observed": "CANDIDATE_PROOF",
+      "passed": true
+    },
+    {
+      "id": "inequality-square",
+      "statement": "For every real number x, x^2 >= 0.",
+      "expected": "CANDIDATE_PROOF",
+      "observed": "CANDIDATE_PROOF",
+      "passed": true
+    },
+    {
+      "id": "false-idempotent-int",
+      "statement": "For every integer x, x^2 = x.",
+      "expected": "CANDIDATE_DISPROOF",
+      "observed": "CANDIDATE_DISPROOF",
+      "passed": true
+    },
+    {
+      "id": "false-successor",
+      "statement": "For every integer x, x + 1 = x.",
+      "expected": "CANDIDATE_DISPROOF",
+      "observed": "CANDIDATE_DISPROOF",
+      "passed": true
+    },
+    {
+      "id": "false-natural-strict",
+      "statement": "For every natural number x, x^2 < x.",
+      "expected": "CANDIDATE_DISPROOF",
+      "observed": "CANDIDATE_DISPROOF",
+      "passed": true
+    }
+  ],
+  "resultArtifactPath": "<REPO_ROOT>/evidence/round2-benchmark/runs/round2-offline-benchmark-v1/ROUND2-RESULT.json",
+  "reportPath": "<REPO_ROOT>/evidence/round2-benchmark/ROUND2-BENCHMARK-REPORT.json"
+}

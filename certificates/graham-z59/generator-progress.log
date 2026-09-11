@@ -1,0 +1,30 @@
+orbit-sieve size=54 raw=424270 reps=7322
+orbit-sieve size=55 raw=30856 reps=532
+orbit-sieve size=56 raw=1653 reps=29
+orbit-sieve size=57 raw=58 reps=1
+orbit-sieve size=58 raw=1 reps=1
+search 1000/7885
+search 2000/7885
+search 3000/7885
+search 4000/7885
+search 5000/7885
+search 6000/7885
+search 7000/7885
+search 7885/7885
+{
+  "status": "WITNESSES_COMPLETE",
+  "prime": 59,
+  "minimumSize": 54,
+  "maximumSize": 58,
+  "rawSubsets": 456838,
+  "orbitRepresentatives": 7885,
+  "threads": 24,
+  "greedyTrials": 32213604,
+  "greedyNodes": 1454861872,
+  "annealRestarts": 571339,
+  "annealSteps": 17128133638,
+  "elapsedMs": 693512,
+  "certificatePath": "/mnt/c/Users/jared/Local Sites/woocommerce-enterprise/erdosfire/evidence/round4-discovery/graham-z59/witnesses.tsv",
+  "rawBySize": {"54":424270,"55":30856,"56":1653,"57":58,"58":1},
+  "representativesBySize": {"54":7322,"55":532,"56":29,"57":1,"58":1}
+}

@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "purpose": "Pre-flight regression check on the NEW graham-z61 tool copies (generate_witnesses.cpp, verify_witnesses.go, verify_orbit_accounting.py, independent_spot_check.py) before trusting them for the real, novel Z_61 sizes 56-60 run. Confirms the copy-and-retarget (comment/default changes only, no logic changes) did not introduce a transcription error, by reproducing the already-committed, previously-verified Z_29 sizes 21-28 certificate byte-for-byte.",
+  "method": "Compiled a second generator binary from the SAME erdosfire/oracle/tools/frontier-math/round4/graham-z61/generate_witnesses.cpp source with -DPRIME=29 -DMIN_K_DEFAULT=21 -DMAX_K_DEFAULT=28 (also passed as explicit CLI args 21 28 for the size range), ran it fresh into a scratch path outside the repo (Claude scratchpad, not erdosfire/evidence/round4-discovery/graham-z29/, which was never touched), then ran the new graham-z61 copies of both verifiers against that fresh output with --prime 29 --min-k 21 --max-k 28. Also independently re-hashed the committed graham-z29/witnesses.tsv directly before trusting the comparison baseline (sha256 matched the value recorded in graham-z59's own regression-z29.json, confirming no drift in the committed baseline).",
+  "sourceDiffAgainstZ59": "diff -u against graham-z59/generate_witnesses.cpp, verify_witnesses.go, and verify_orbit_accounting.py performed directly (not summarized): only the FORK NOTE comment blocks and the three intended macro/flag defaults (PRIME 59->61, MIN_K 54->56, MAX_K 58->60) changed in each file. Zero logic-line diffs.",
+  "generatorRun": {
+    "status": "WITNESSES_COMPLETE",
+    "prime": 29,
+    "minimumSize": 21,
+    "maximumSize": 28,
+    "rawSubsets": 1683218,
+    "orbitRepresentatives": 60134,
+    "threads": 24,
+    "greedyTrials": 1904057,
+    "greedyNodes": 36245840,
+    "annealRestarts": 4,
+    "annealSteps": 117621,
+    "elapsedMs": 3077,
+    "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+    "rawBySize": {"21":1184040,"22":376740,"23":98280,"24":20475,"25":3276,"26":378,"27":28,"28":1},
+    "representativesBySize": {"21":42288,"22":13468,"23":3510,"24":735,"25":117,"26":14,"27":1,"28":1}
+  },
+  "committedGrahamZ29WitnessesSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+  "shaMatchesCommittedZ29": true,
+  "byteDiffAgainstCommitted": "diff -q exit 0 (no differences) -- confirmed via direct `diff` of the two files, not sha256 alone",
+  "goVerification": {
+    "status": "VERIFIED",
+    "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+    "uniqueCoveredSubsets": 1683218,
+    "expectedCoveredSubsets": 1683218,
+    "coverageBySize": {"21":1184040,"22":376740,"23":98280,"24":20475,"25":3276,"26":378,"27":28,"28":1},
+    "expectedBySize": {"21":1184040,"22":376740,"23":98280,"24":20475,"25":3276,"26":378,"27":28,"28":1},
+    "orbitSizeHistogram": {"1":1,"4":1,"7":1,"14":33,"28":60098}
+  },
+  "pythonVerification": {
+    "status": "VERIFIED",
+    "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+    "coveredSubsets": 1683218,
+    "coverageBySize": {"21":1184040,"22":376740,"23":98280,"24":20475,"25":3276,"26":378,"27":28,"28":1},
+    "expectedBySize": {"21":1184040,"22":376740,"23":98280,"24":20475,"25":3276,"26":378,"27":28,"28":1},
+    "orbitSizeHistogram": {"1":1,"4":1,"7":1,"14":33,"28":60098}
+  },
+  "bothVerifiersAgree": true,
+  "operationalNote": "Hit the known WSL interop gremlin (documented in this session's memory: $vars get silently eaten when passed via a multi-line `wsl.exe -lc '...'` inline script) on the first attempt -- the generator wrote its output to WSL root (/z61fork-regress-z29-witnesses.tsv) instead of the intended scratch path because $SCRATCH expanded empty. Fixed by writing an actual .sh script file to disk and invoking `MSYS_NO_PATHCONV=1 wsl.exe -d Ubuntu-22.04 -- bash <script.sh>` instead of an inline -lc string -- MSYS_NO_PATHCONV=1 was also required to stop Git Bash's own path-conversion from mangling the /mnt/c/... argument into a nonexistent C:/Program Files/Git/mnt/c/... path. Stray root files removed before proceeding. No data-loss risk (caught before the real run, not after).",
+  "conclusion": "New graham-z61 tool copies (generator + both verifiers) reproduce the known-good Z_29 sizes 21-28 certificate byte-for-byte (direct `diff`, not just sha256sum, and not just verifier self-report) and both verifiers independently confirm it, with matching orbit-size histogram {1,4,7,14,28} (all divisors of 28, as required for a multiplicative-orbit partition of Z_29^x). Source diffed via `diff -u` against graham-z59/generate_witnesses.cpp and graham-z59/verify_witnesses.go directly: only the intended FORK NOTE comment block and 3 macro/flag defaults changed, confirmed line-by-line, not summarized. Proceeding to the real Z_61 sizes 56-60 run with confidence in the tooling itself (does not and cannot validate the Z_61 mathematical result, which is genuinely new)."
+}

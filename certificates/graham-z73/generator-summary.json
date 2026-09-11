@@ -1,0 +1,17 @@
+{
+  "status": "WITNESSES_COMPLETE",
+  "prime": 73,
+  "minimumSize": 72,
+  "maximumSize": 72,
+  "rawSubsets": 1,
+  "orbitRepresentatives": 1,
+  "threads": 1,
+  "greedyTrials": 122880,
+  "greedyNodes": 7291830,
+  "annealRestarts": 61532,
+  "annealSteps": 1845089701,
+  "elapsedMs": 1981048,
+  "certificatePath": "run4-size72-alone-certificate.tsv",
+  "rawBySize": {"72":1},
+  "representativesBySize": {"72":1}
+}

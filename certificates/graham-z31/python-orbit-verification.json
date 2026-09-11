@@ -1,0 +1,54 @@
+{
+  "certificateSha256": "0b18d921b86b946e973279c6cc96fec52434718d64feedc9937467ec8571d7c3",
+  "coverageBySize": {
+    "21": 14307150,
+    "22": 5852925,
+    "23": 2035800,
+    "24": 593775,
+    "25": 142506,
+    "26": 27405,
+    "27": 4060,
+    "28": 435,
+    "29": 30,
+    "30": 1
+  },
+  "coveredSubsets": 22964087,
+  "elapsedSeconds": 108.800922,
+  "expectedBySize": {
+    "21": 14307150,
+    "22": 5852925,
+    "23": 2035800,
+    "24": 593775,
+    "25": 142506,
+    "26": 27405,
+    "27": 4060,
+    "28": 435,
+    "29": 30,
+    "30": 1
+  },
+  "method": "independent canonical-orbit accounting plus representative witness validation",
+  "orbitSizeHistogram": {
+    "1": 1,
+    "5": 1,
+    "6": 1,
+    "10": 17,
+    "15": 129,
+    "30": 765399
+  },
+  "prime": 31,
+  "representativeRows": 765548,
+  "representativesBySize": {
+    "21": 476913,
+    "22": 195143,
+    "23": 67860,
+    "24": 19811,
+    "25": 4751,
+    "26": 917,
+    "27": 136,
+    "28": 15,
+    "29": 1,
+    "30": 1
+  },
+  "status": "VERIFIED",
+  "verifierSha256": "137f2717ed7617275671e1531857e513ba79de32bd4708773754124efe56a0f0"
+}

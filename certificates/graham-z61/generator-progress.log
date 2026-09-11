@@ -1,0 +1,14 @@
+orbit-sieve size=56 raw=487635 reps=8135
+orbit-sieve size=57 raw=34220 reps=571
+orbit-sieve size=58 raw=1770 reps=30
+orbit-sieve size=59 raw=60 reps=1
+orbit-sieve size=60 raw=1 reps=1
+search 1000/8738
+search 2000/8738
+search 3000/8738
+search 4000/8738
+search 5000/8738
+search 6000/8738
+search 7000/8738
+search 8000/8738
+search 8738/8738

@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "purpose": "Re-regression-test after patching generate_witnesses.cpp with a salvage pass (see the POST-HOC PATCH comment in the file itself). The first real Z_61 sizes 56-60 run left exactly 2 of 8738 representatives unresolved (0x7ffffffffffffff size 59, 0xfffffffffffffff size 60 -- see generator-progress.log, exit code 3, no certificate written that run). Root cause: find_witness()'s unit-scaling fallback is degenerate for any mask with a size-1 multiplicative orbit (a fixed point of scaling -- the full set Z_61\\{0} is always such a fixed point), so it silently repeated an identical deterministic search up to 59 times instead of actually diversifying. Fix: threaded an explicit `salt` parameter through greedy_search/anneal_search (default 0, a no-op XOR against both RNG seed formulas) and added a 96-round salted salvage pass to find_witness(), reached only when both original phases fail. This regression re-run exists to confirm the patch is truly inert for every path that previously worked -- Z_29 sizes 21-28 never needed the salvage pass even before this patch, so its output must remain byte-identical.",
+  "method": "Recompiled generate_witnesses_z29regress from the PATCHED generate_witnesses.cpp source with -DPRIME=29 -DMIN_K_DEFAULT=21 -DMAX_K_DEFAULT=28, ran fresh into a new scratch path, diffed byte-for-byte against the already-committed graham-z29 witnesses.tsv, and re-ran both verifiers.",
+  "generatorRun": {
+    "status": "WITNESSES_COMPLETE",
+    "prime": 29,
+    "minimumSize": 21,
+    "maximumSize": 28,
+    "rawSubsets": 1683218,
+    "orbitRepresentatives": 60134,
+    "threads": 24,
+    "greedyTrials": 1904057,
+    "greedyNodes": 36245840,
+    "annealRestarts": 4,
+    "annealSteps": 117621,
+    "elapsedMs": 4510,
+    "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+    "rawBySize": {"21":1184040,"22":376740,"23":98280,"24":20475,"25":3276,"26":378,"27":28,"28":1},
+    "representativesBySize": {"21":42288,"22":13468,"23":3510,"24":735,"25":117,"26":14,"27":1,"28":1}
+  },
+  "note": "greedyTrials/greedyNodes/annealRestarts/annealSteps are IDENTICAL to the pre-patch regression run (1904057/36245840/4/117621) -- direct confirmation that not a single Z_29 mask in sizes 21-28 ever reached the new salvage pass (the pass increments the anneal_restarts stat when entered, and that stat did not change), i.e. the patch is fully inert on this known-good path, not just coincidentally hash-identical.",
+  "committedGrahamZ29WitnessesSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+  "shaMatchesCommittedZ29": true,
+  "byteDiffAgainstCommitted": "diff -q exit 0 (no differences)",
+  "goVerification": {
+    "status": "VERIFIED",
+    "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+    "uniqueCoveredSubsets": 1683218,
+    "expectedCoveredSubsets": 1683218,
+    "orbitSizeHistogram": {"1":1,"4":1,"7":1,"14":33,"28":60098}
+  },
+  "pythonVerification": {
+    "status": "VERIFIED",
+    "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+    "coveredSubsets": 1683218,
+    "orbitSizeHistogram": {"1":1,"4":1,"7":1,"14":33,"28":60098}
+  },
+  "bothVerifiersAgree": true,
+  "conclusion": "Patch confirmed inert on the already-proven Z_29 sizes 21-28 path: byte-identical certificate, byte-identical search-effort stats, both verifiers still VERIFIED. Proceeding to re-run the real Z_61 sizes 56-60 generation with the patched binary."
+}

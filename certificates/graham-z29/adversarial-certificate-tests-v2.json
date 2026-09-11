@@ -1,0 +1,309 @@
+{
+  "allMutationsRejectedByAllVerifiers": true,
+  "mutations": 14,
+  "notApplicable": [
+    {
+      "concept": "corrupt_merkle_root",
+      "reason": "no Merkle tree/root exists anywhere in this pipeline (grepped generate_witnesses.cpp, verify_witnesses.go, verify_orbit_accounting.py, round4_release.py for 'merkle': zero matches). The certificate is a flat TSV proved by canonical-orbit accounting, not a hash-tree structure."
+    },
+    {
+      "concept": "swap_two_shards / remove_final_shard / complete_shards_out_of_order",
+      "reason": "no shard concept exists anywhere in this pipeline (grepped for 'shard': zero matches). generate_witnesses.cpp writes one certificate as a single file (write-to-.tmp then atomic rename); both verifiers read it as one sequential stream. There is nothing to swap, remove, or reorder."
+    },
+    {
+      "concept": "corrupt_payload_hash",
+      "reason": "certificateSha256/verifierSha256 in both verifiers' JSON output are descriptive telemetry, recomputed fresh from the file every run -- neither verify_witnesses.go nor verify_orbit_accounting.py ever compares a hash against a pre-declared/expected value, so there is no live gate to defeat by corrupting a hash field. The closest real analog is round4_release.py's regenerate(), which does enforce generated_hash != committed_hash, but exercising that needs a full C++ regeneration run (36s+ for Z_31 alone) -- out of scope here (read-only on generate_witnesses.cpp) and not part of keeping this suite fast."
+    },
+    {
+      "concept": "use_an_old_certificate_with_a_new_manifest",
+      "reason": "MANIFEST-SHA256.tsv at the repo root is a static sha256sum-style integrity ledger and does include an entry for this certificate, but no script in the repo reads it back in as a validation input (grepped for 'MANIFEST-SHA256' usage: only round4_release.py's own file list and ROUND4-START-HERE.md reference it by name, neither one parses/enforces it). No live checker verifies a certificate against a manifest, so there is nothing to fool."
+    },
+    {
+      "concept": "toolchain_change_between_resume_attempts",
+      "reason": "no resume/checkpoint mechanism exists anywhere in this pipeline (grepped the whole graham-z29 tool directory for 'resume'/'checkpoint': zero matches). round4_release.py exposes exactly three commands (verify/regenerate/full), each a single fresh run with no partial-progress state to resume from."
+    }
+  ],
+  "results": [
+    {
+      "mutation": "missing_representative",
+      "verifierFlags": [
+        "--prime=29",
+        "--min-k=21",
+        "--max-k=28"
+      ],
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "{\n  \"error\": \"size 21 coverage 1184012 expected 1184040\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "odule>\n    raise SystemExit(main())\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 142, in main\n    raise AssertionError(f\"orbit coverage mismatch: {actual_by_size} != {expected_by_size}\")\nAssertionError: orbit coverage mismatch: {21: 1184012, 22: 376740, 23: 98280, 24: 20475, 25: 3276, 26: 378, 27: 28, 28: 1} != {21: 1184040, 22: 376740, 23: 98280, 24: 20475, 25: 3276, 26: 378, 27: 28, 28: 1}"
+        }
+      }
+    },
+    {
+      "mutation": "duplicate_representative",
+      "verifierFlags": [
+        "--prime=29",
+        "--min-k=21",
+        "--max-k=28"
+      ],
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "{\n  \"error\": \"row 2 duplicate representative 0x1fffff\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "Traceback (most recent call last):\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 166, in <module>\n    raise SystemExit(main())\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 133, in main\n    raise AssertionError(f\"row {row_count}: duplicate orbit\")\nAssertionError: row 2: duplicate orbit"
+        }
+      }
+    },
+    {
+      "mutation": "invalid_ordering_duplicate_element",
+      "verifierFlags": [
+        "--prime=29",
+        "--min-k=21",
+        "--max-k=28"
+      ],
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "{\n  \"error\": \"row 1 representative invalid: duplicate residue 5\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 127, in main\n    check_witness(mask, sequence, prime)\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 46, in check_witness\n    raise AssertionError(\"sequence is not exactly the represented set\")\nAssertionError: sequence is not exactly the represented set"
+        }
+      }
+    },
+    {
+      "mutation": "invalid_total_field",
+      "verifierFlags": [
+        "--prime=29",
+        "--min-k=21",
+        "--max-k=28"
+      ],
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "{\n  \"error\": \"row 1 invalid total field\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "ack (most recent call last):\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 166, in <module>\n    raise SystemExit(main())\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 126, in main\n    raise AssertionError(f\"row {row_count}: invalid subset total\")\nAssertionError: row 1: invalid subset total"
+        }
+      }
+    },
+    {
+      "mutation": "changed_subset_mask",
+      "verifierFlags": [
+        "--prime=29",
+        "--min-k=21",
+        "--max-k=28"
+      ],
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "{\n  \"error\": \"row 1 invalid total field\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "ack (most recent call last):\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 166, in <module>\n    raise SystemExit(main())\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 126, in main\n    raise AssertionError(f\"row {row_count}: invalid subset total\")\nAssertionError: row 1: invalid subset total"
+        }
+      }
+    },
+    {
+      "mutation": "changed_witness_element",
+      "verifierFlags": [
+        "--prime=29",
+        "--min-k=21",
+        "--max-k=28"
+      ],
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "{\n  \"error\": \"row 1 representative invalid: residue 22 absent from mask\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 127, in main\n    check_witness(mask, sequence, prime)\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 46, in check_witness\n    raise AssertionError(\"sequence is not exactly the represented set\")\nAssertionError: sequence is not exactly the represented set"
+        }
+      }
+    },
+    {
+      "mutation": "out_of_range_witness_element",
+      "verifierFlags": [
+        "--prime=29",
+        "--min-k=21",
+        "--max-k=28"
+      ],
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "{\n  \"error\": \"row 1 representative invalid: residue 29 outside 1..28\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 127, in main\n    check_witness(mask, sequence, prime)\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 46, in check_witness\n    raise AssertionError(\"sequence is not exactly the represented set\")\nAssertionError: sequence is not exactly the represented set"
+        }
+      }
+    },
+    {
+      "mutation": "reordered_witness_partial_sum_collision",
+      "verifierFlags": [
+        "--prime=29",
+        "--min-k=21",
+        "--max-k=28"
+      ],
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "{\n  \"error\": \"row 1 representative invalid: partial-sum collision at position 15: 4\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 127, in main\n    check_witness(mask, sequence, prime)\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 54, in check_witness\n    raise AssertionError(f\"partial-sum collision at {index + 1}: {current}\")\nAssertionError: partial-sum collision at 15: 4"
+        }
+      }
+    },
+    {
+      "mutation": "truncated_declared_witness_length",
+      "verifierFlags": [
+        "--prime=29",
+        "--min-k=21",
+        "--max-k=28"
+      ],
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "{\n  \"error\": \"row 1 representative invalid: ordering length 20 != subset size 21\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 127, in main\n    check_witness(mask, sequence, prime)\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 46, in check_witness\n    raise AssertionError(\"sequence is not exactly the represented set\")\nAssertionError: sequence is not exactly the represented set"
+        }
+      }
+    },
+    {
+      "mutation": "altered_subset_cardinality",
+      "verifierFlags": [
+        "--prime=29",
+        "--min-k=21",
+        "--max-k=28"
+      ],
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "{\n  \"error\": \"row 1 invalid size field 22 actual 21\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "Traceback (most recent call last):\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 166, in <module>\n    raise SystemExit(main())\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 123, in main\n    raise AssertionError(f\"row {row_count}: invalid size\")\nAssertionError: row 1: invalid size"
+        }
+      }
+    },
+    {
+      "mutation": "noncanonical_representative",
+      "verifierFlags": [
+        "--prime=29",
+        "--min-k=21",
+        "--max-k=28"
+      ],
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "{\n  \"error\": \"row 1 representative 0xaaabfff not canonical 0x1fffff\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "nt call last):\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 166, in <module>\n    raise SystemExit(main())\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 131, in main\n    raise AssertionError(f\"row {row_count}: noncanonical representative\")\nAssertionError: row 1: noncanonical representative"
+        }
+      }
+    },
+    {
+      "mutation": "trailing_garbage_bytes",
+      "verifierFlags": [
+        "--prime=29",
+        "--min-k=21",
+        "--max-k=28"
+      ],
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "{\n  \"error\": \"TSV line 60135: record on line 60136: wrong number of fields\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "/erdosfire/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 121, in main\n    for row_count, (mask, size, stated_total, sequence) in enumerate(load_rows(certificate_text), start=1):\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 78, in load_rows\n    int(record[\"size\"]),\nTypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        }
+      }
+    },
+    {
+      "mutation": "wrong_modulus_same_scope",
+      "verifierFlags": [
+        "--prime=31",
+        "--min-k=21",
+        "--max-k=28"
+      ],
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "{\n  \"error\": \"row 1 invalid total field\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "ack (most recent call last):\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 166, in <module>\n    raise SystemExit(main())\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 126, in main\n    raise AssertionError(f\"row {row_count}: invalid subset total\")\nAssertionError: row 1: invalid subset total"
+        }
+      }
+    },
+    {
+      "mutation": "wrong_checker_configuration",
+      "verifierFlags": [
+        "--prime=31",
+        "--min-k=21",
+        "--max-k=30"
+      ],
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "{\n  \"error\": \"row 1 invalid total field\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderrTail": "ack (most recent call last):\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 166, in <module>\n    raise SystemExit(main())\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 126, in main\n    raise AssertionError(f\"row {row_count}: invalid subset total\")\nAssertionError: row 1: invalid subset total"
+        }
+      }
+    }
+  ],
+  "status": "PASS"
+}

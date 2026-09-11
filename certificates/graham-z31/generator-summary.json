@@ -1,0 +1,17 @@
+{
+  "status": "WITNESSES_COMPLETE",
+  "prime": 31,
+  "minimumSize": 21,
+  "maximumSize": 30,
+  "rawSubsets": 22964087,
+  "orbitRepresentatives": 765548,
+  "threads": 24,
+  "greedyTrials": 14562074,
+  "greedyNodes": 284991496,
+  "annealRestarts": 7,
+  "annealSteps": 196304,
+  "elapsedMs": 36042,
+  "certificatePath": "/mnt/c/Users/jared/AppData/Local/Temp/claude/C--Users-jared-Local-Sites-woocommerce-enterprise/dfc2d9e1-4362-4354-ab73-80014eb34199/scratchpad/z31_full_witnesses.tsv",
+  "rawBySize": {"21":14307150,"22":5852925,"23":2035800,"24":593775,"25":142506,"26":27405,"27":4060,"28":435,"29":30,"30":1},
+  "representativesBySize": {"21":476913,"22":195143,"23":67860,"24":19811,"25":4751,"26":917,"27":136,"28":15,"29":1,"30":1}
+}

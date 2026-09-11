@@ -1,0 +1,103 @@
+{
+  "command": "verify",
+  "elapsedSeconds": 18.126077,
+  "round": 4,
+  "status": "PASS",
+  "target": "Graham/Alspach sequenceability for Z_29",
+  "verification": {
+    "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+    "coveredSubsets": 1683218,
+    "goVerifier": {
+      "certificate": "evidence/round4-discovery/graham-z29/witnesses.tsv",
+      "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+      "coverageBySize": {
+        "21": 1184040,
+        "22": 376740,
+        "23": 98280,
+        "24": 20475,
+        "25": 3276,
+        "26": 378,
+        "27": 28,
+        "28": 1
+      },
+      "elapsedMilliseconds": 1423,
+      "expectedBySize": {
+        "21": 1184040,
+        "22": 376740,
+        "23": 98280,
+        "24": 20475,
+        "25": 3276,
+        "26": 378,
+        "27": 28,
+        "28": 1
+      },
+      "expectedCoveredSubsets": 1683218,
+      "orbitSizeHistogram": {
+        "1": 1,
+        "14": 33,
+        "28": 60098,
+        "4": 1,
+        "7": 1
+      },
+      "prime": 29,
+      "representativeRows": 60134,
+      "scaledWitnessChecks": 1683752,
+      "scope": {
+        "maximumSize": 28,
+        "minimumSize": 21
+      },
+      "status": "VERIFIED",
+      "uniqueCoveredSubsets": 1683218,
+      "verifierSha256": "e9176d27ec55ff6817dc4bf7b67a76b4aa4fb198cdeee0a883abaf8eec9c6628"
+    },
+    "pythonVerifier": {
+      "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+      "coverageBySize": {
+        "21": 1184040,
+        "22": 376740,
+        "23": 98280,
+        "24": 20475,
+        "25": 3276,
+        "26": 378,
+        "27": 28,
+        "28": 1
+      },
+      "coveredSubsets": 1683218,
+      "elapsedSeconds": 12.707963,
+      "expectedBySize": {
+        "21": 1184040,
+        "22": 376740,
+        "23": 98280,
+        "24": 20475,
+        "25": 3276,
+        "26": 378,
+        "27": 28,
+        "28": 1
+      },
+      "method": "independent canonical-orbit accounting plus representative witness validation",
+      "orbitSizeHistogram": {
+        "1": 1,
+        "14": 33,
+        "28": 60098,
+        "4": 1,
+        "7": 1
+      },
+      "prime": 29,
+      "representativeRows": 60134,
+      "representativesBySize": {
+        "21": 42288,
+        "22": 13468,
+        "23": 3510,
+        "24": 735,
+        "25": 117,
+        "26": 14,
+        "27": 1,
+        "28": 1
+      },
+      "status": "VERIFIED",
+      "verifierSha256": "e1ca0d304dad9b4f02be3292b354e081f12f712ef53543b53134df69b294f8f8"
+    },
+    "representatives": 60134,
+    "status": "VERIFIED"
+  }
+}

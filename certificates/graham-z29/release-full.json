@@ -1,0 +1,210 @@
+{
+  "adversarialTests": {
+    "allMutationsRejectedByAllVerifiers": true,
+    "mutations": 4,
+    "results": [
+      {
+        "mutation": "missing_representative",
+        "verifiers": {
+          "go_full_expansion": {
+            "exitCode": 1,
+            "rejected": true,
+            "stderrTail": "{\n  \"error\": \"size 21 coverage 1184012 expected 1184040\",\n  \"status\": \"FAILED\"\n}"
+          },
+          "python_orbit_accounting": {
+            "exitCode": 1,
+            "rejected": true,
+            "stderrTail": "        ~~~~^^\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 103, in main\n    raise AssertionError(f\"orbit coverage mismatch: {actual_by_size} != {expected_by_size}\")\nAssertionError: orbit coverage mismatch: {21: 1184012, 22: 376740, 23: 98280, 24: 20475, 25: 3276, 26: 378, 27: 28, 28: 1} != {21: 1184040, 22: 376740, 23: 98280, 24: 20475, 25: 3276, 26: 378, 27: 28, 28: 1}"
+          }
+        }
+      },
+      {
+        "mutation": "duplicate_representative",
+        "verifiers": {
+          "go_full_expansion": {
+            "exitCode": 1,
+            "rejected": true,
+            "stderrTail": "{\n  \"error\": \"row 2 duplicate representative 0x1fffff\",\n  \"status\": \"FAILED\"\n}"
+          },
+          "python_orbit_accounting": {
+            "exitCode": 1,
+            "rejected": true,
+            "stderrTail": "ERDOSFIRE-FRONTIER-MATH-AUTOPILOT-ROUND4-NOVEL-MATH-2026-07-14/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 127, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 94, in main\n    raise AssertionError(f\"row {row_count}: duplicate orbit\")\nAssertionError: row 2: duplicate orbit"
+          }
+        }
+      },
+      {
+        "mutation": "invalid_ordering_duplicate_element",
+        "verifiers": {
+          "go_full_expansion": {
+            "exitCode": 1,
+            "rejected": true,
+            "stderrTail": "{\n  \"error\": \"row 1 representative invalid: duplicate residue 5\",\n  \"status\": \"FAILED\"\n}"
+          },
+          "python_orbit_accounting": {
+            "exitCode": 1,
+            "rejected": true,
+            "stderrTail": "-MATH-2026-07-14/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 88, in main\n    check_witness(mask, sequence)\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 43, in check_witness\n    raise AssertionError(\"sequence is not exactly the represented set\")\nAssertionError: sequence is not exactly the represented set"
+          }
+        }
+      },
+      {
+        "mutation": "invalid_total_field",
+        "verifiers": {
+          "go_full_expansion": {
+            "exitCode": 1,
+            "rejected": true,
+            "stderrTail": "{\n  \"error\": \"row 1 invalid total field\",\n  \"status\": \"FAILED\"\n}"
+          },
+          "python_orbit_accounting": {
+            "exitCode": 1,
+            "rejected": true,
+            "stderrTail": "FRONTIER-MATH-AUTOPILOT-ROUND4-NOVEL-MATH-2026-07-14/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 127, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"<REPO_ROOT>/oracle/tools/frontier-math/round4/graham-z29/verify_orbit_accounting.py\", line 87, in main\n    raise AssertionError(f\"row {row_count}: invalid subset total\")\nAssertionError: row 1: invalid subset total"
+          }
+        }
+      }
+    ],
+    "status": "PASS"
+  },
+  "command": "full",
+  "elapsedSeconds": 71.303356,
+  "regeneration": {
+    "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+    "generatorSummary": {
+      "annealRestarts": 4,
+      "annealSteps": 117621,
+      "certificatePath": "/tmp/erdosfire-round4-regenerate-pdzp4ciz/witnesses.tsv",
+      "elapsedMs": 15745,
+      "greedyNodes": 36245840,
+      "greedyTrials": 1904057,
+      "maximumSize": 28,
+      "minimumSize": 21,
+      "orbitRepresentatives": 60134,
+      "prime": 29,
+      "rawBySize": {
+        "21": 1184040,
+        "22": 376740,
+        "23": 98280,
+        "24": 20475,
+        "25": 3276,
+        "26": 378,
+        "27": 28,
+        "28": 1
+      },
+      "rawSubsets": 1683218,
+      "representativesBySize": {
+        "21": 42288,
+        "22": 13468,
+        "23": 3510,
+        "24": 735,
+        "25": 117,
+        "26": 14,
+        "27": 1,
+        "28": 1
+      },
+      "status": "WITNESSES_COMPLETE",
+      "threads": 16
+    },
+    "status": "PASS",
+    "threads": 16
+  },
+  "round": 4,
+  "status": "PASS",
+  "target": "Graham/Alspach sequenceability for Z_29",
+  "verification": {
+    "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+    "coveredSubsets": 1683218,
+    "goVerifier": {
+      "certificate": "evidence/round4-discovery/graham-z29/witnesses.tsv",
+      "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+      "coverageBySize": {
+        "21": 1184040,
+        "22": 376740,
+        "23": 98280,
+        "24": 20475,
+        "25": 3276,
+        "26": 378,
+        "27": 28,
+        "28": 1
+      },
+      "elapsedMilliseconds": 1613,
+      "expectedBySize": {
+        "21": 1184040,
+        "22": 376740,
+        "23": 98280,
+        "24": 20475,
+        "25": 3276,
+        "26": 378,
+        "27": 28,
+        "28": 1
+      },
+      "expectedCoveredSubsets": 1683218,
+      "orbitSizeHistogram": {
+        "1": 1,
+        "14": 33,
+        "28": 60098,
+        "4": 1,
+        "7": 1
+      },
+      "prime": 29,
+      "representativeRows": 60134,
+      "scaledWitnessChecks": 1683752,
+      "scope": {
+        "maximumSize": 28,
+        "minimumSize": 21
+      },
+      "status": "VERIFIED",
+      "uniqueCoveredSubsets": 1683218,
+      "verifierSha256": "e9176d27ec55ff6817dc4bf7b67a76b4aa4fb198cdeee0a883abaf8eec9c6628"
+    },
+    "pythonVerifier": {
+      "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+      "coverageBySize": {
+        "21": 1184040,
+        "22": 376740,
+        "23": 98280,
+        "24": 20475,
+        "25": 3276,
+        "26": 378,
+        "27": 28,
+        "28": 1
+      },
+      "coveredSubsets": 1683218,
+      "elapsedSeconds": 12.792711,
+      "expectedBySize": {
+        "21": 1184040,
+        "22": 376740,
+        "23": 98280,
+        "24": 20475,
+        "25": 3276,
+        "26": 378,
+        "27": 28,
+        "28": 1
+      },
+      "method": "independent canonical-orbit accounting plus representative witness validation",
+      "orbitSizeHistogram": {
+        "1": 1,
+        "14": 33,
+        "28": 60098,
+        "4": 1,
+        "7": 1
+      },
+      "prime": 29,
+      "representativeRows": 60134,
+      "representativesBySize": {
+        "21": 42288,
+        "22": 13468,
+        "23": 3510,
+        "24": 735,
+        "25": 117,
+        "26": 14,
+        "27": 1,
+        "28": 1
+      },
+      "status": "VERIFIED",
+      "verifierSha256": "e1ca0d304dad9b4f02be3292b354e081f12f712ef53543b53134df69b294f8f8"
+    },
+    "representatives": 60134,
+    "status": "VERIFIED"
+  }
+}

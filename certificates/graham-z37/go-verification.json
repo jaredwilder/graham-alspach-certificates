@@ -1,0 +1,44 @@
+{
+  "status": "VERIFIED",
+  "prime": 37,
+  "scope": {
+    "maximumSize": 36,
+    "minimumSize": 29
+  },
+  "certificate": "/mnt/c/Users/jared/Local Sites/woocommerce-enterprise/erdosfire/evidence/round4-discovery/graham-z37/witnesses.tsv",
+  "certificateSha256": "edb41b88b399d5aba27bd9cf77ee4fb920786f6bd077013806beb5c2d69d3a97",
+  "verifierSha256": "ea8e576d5c0b485c21d5c564cdc21398856737d958a0eb16df09711a82ad078c",
+  "representativeRows": 298344,
+  "uniqueCoveredSubsets": 10739176,
+  "expectedCoveredSubsets": 10739176,
+  "coverageBySize": {
+    "29": 8347680,
+    "30": 1947792,
+    "31": 376992,
+    "32": 58905,
+    "33": 7140,
+    "34": 630,
+    "35": 36,
+    "36": 1
+  },
+  "expectedBySize": {
+    "29": 8347680,
+    "30": 1947792,
+    "31": 376992,
+    "32": 58905,
+    "33": 7140,
+    "34": 630,
+    "35": 36,
+    "36": 1
+  },
+  "scaledWitnessChecks": 10740384,
+  "orbitSizeHistogram": {
+    "1": 1,
+    "12": 6,
+    "18": 54,
+    "36": 298281,
+    "6": 1,
+    "9": 1
+  },
+  "elapsedMilliseconds": 8828
+}

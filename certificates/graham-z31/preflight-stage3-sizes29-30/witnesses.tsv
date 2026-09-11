@@ -1,0 +1,6 @@
+# ERDOSFIRE_GRAHAM_Z31_WITNESSES_V2
+# theorem_scope=subsets_of_Z31_nonzero_of_sizes_29_through_30
+# orbit_action=multiplication_by_nonzero_residue_mod_31
+mask	size	total	ordering	greedy_trials	greedy_nodes	anneal_restarts	anneal_steps
+0x1fffffff	29	1	26,15,6,23,1,16,21,8,27,29,3,13,2,14,18,7,12,20,24,22,17,28,10,9,4,19,5,11,25	3837	90227	0	0
+0x3fffffff	30	0	18,11,9,13,20,2,25,22,21,30,6,23,1,15,26,12,17,27,5,4,16,28,29,24,3,8,14,7,19,10	276	6622	0	0

@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "purpose": "Pre-flight regression check on the NEW graham-z41 tool copies (generate_witnesses.cpp, verify_witnesses.go, verify_orbit_accounting.py) before trusting them for the real, novel Z_41 sizes 34-40 run. Confirms the copy-and-retarget (comment/default changes only, no logic changes) did not introduce a transcription error, by reproducing the already-committed, previously-verified Z_29 sizes 21-28 certificate byte-for-byte.",
+  "method": "Compiled a second generator binary from the SAME erdosfire/oracle/tools/frontier-math/round4/graham-z41/generate_witnesses.cpp source with -DPRIME=29 (CLI args 21 28 for the size range), ran it fresh into a scratch path (not erdosfire/evidence/round4-discovery/graham-z29/, which was never touched), then ran the new graham-z41 copies of both verifiers against that fresh output with --prime 29 --min-k 21 --max-k 28.",
+  "generatorRun": {
+    "status": "WITNESSES_COMPLETE",
+    "prime": 29,
+    "minimumSize": 21,
+    "maximumSize": 28,
+    "rawSubsets": 1683218,
+    "orbitRepresentatives": 60134,
+    "threads": 24,
+    "elapsedMs": 2863,
+    "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+    "rawBySize": {"21":1184040,"22":376740,"23":98280,"24":20475,"25":3276,"26":378,"27":28,"28":1},
+    "representativesBySize": {"21":42288,"22":13468,"23":3510,"24":735,"25":117,"26":14,"27":1,"28":1}
+  },
+  "committedGrahamZ29WitnessesSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+  "shaMatchesCommittedZ29": true,
+  "goVerification": {
+    "status": "VERIFIED",
+    "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+    "uniqueCoveredSubsets": 1683218,
+    "expectedCoveredSubsets": 1683218,
+    "coverageBySize": {"21":1184040,"22":376740,"23":98280,"24":20475,"25":3276,"26":378,"27":28,"28":1},
+    "expectedBySize": {"21":1184040,"22":376740,"23":98280,"24":20475,"25":3276,"26":378,"27":28,"28":1}
+  },
+  "pythonVerification": {
+    "status": "VERIFIED",
+    "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+    "coveredSubsets": 1683218,
+    "coverageBySize": {"21":1184040,"22":376740,"23":98280,"24":20475,"25":3276,"26":378,"27":28,"28":1},
+    "expectedBySize": {"21":1184040,"22":376740,"23":98280,"24":20475,"25":3276,"26":378,"27":28,"28":1}
+  },
+  "bothVerifiersAgree": true,
+  "conclusion": "New graham-z41 tool copies (generator + both verifiers) reproduce the known-good Z_29 sizes 21-28 certificate byte-for-byte and both verifiers independently confirm it. No transcription drift from the graham-z37 originals. Proceeding to the real Z_41 sizes 34-40 run with confidence in the tooling itself (does not and cannot validate the Z_41 mathematical result, which is genuinely new)."
+}

@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "note": "Two independent from-source generator runs (not three, unlike the Z_41 precedent's three-run check -- each full run took ~16.1 minutes wall-clock at this scope (148,157 orbit representatives, heavier annealing load than Z_41), so a third run was judged not worth the additional ~16 minutes given the algorithm's determinism is also structurally guaranteed by inspection of generate_witnesses.cpp: every RNG is seeded purely from a deterministic hash of the mask value (`0xd1b54a32d192ed03ULL ^ (mask * 0x9e3779b97f4a7c15ULL)` for greedy search, `0x94d049bb133111ebULL ^ (mask * 0xbf58476d1ce4e5b9ULL)` for annealing) -- never from wall-clock time or thread-scheduling order -- and the final certificate rows are written from a `results` vector indexed by the FIXED position of each representative in the pre-sorted `reps` array, not by completion order, so multi-threaded scheduling nondeterminism cannot affect the output ordering either. Run 1 is the run committed as witnesses.tsv (elapsedMs=970926 per generator-summary.json). Run 2 was a later, fully independent re-invocation of the same generate_witnesses binary against the same CLI arguments (prime=43 compiled in, min_k=36, max_k=42), writing to a separate scratch path (regen2_witnesses.tsv), never overwriting the committed certificate.",
+  "run1Sha256": "6599bfb86b698383e0b392973280ca2816e543345b78560829f923a89f9bf0cb",
+  "run2Sha256": "6599bfb86b698383e0b392973280ca2816e543345b78560829f923a89f9bf0cb",
+  "committedWitnessesSha256": "6599bfb86b698383e0b392973280ca2816e543345b78560829f923a89f9bf0cb",
+  "allIdentical": true,
+  "threadCounts": [24, 24],
+  "elapsedMsPerRun": [970926, 966693],
+  "verificationMethod": "direct coreutils sha256sum on both files plus a byte-for-byte diff (not verifier self-report)"
+}

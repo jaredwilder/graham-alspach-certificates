@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "purpose": "Pre-flight regression check on the NEW graham-z73 tool copies (generate_witnesses.cpp, verify_witnesses.go, verify_orbit_accounting.py, independent_spot_check.py) before trusting them for the real, novel Z_73 sizes 69-72 run. Confirms the copy-and-retarget (comment/default changes, PLUS the real __int128/mask128 width-extension this fork required -- see width-extension-selftest.json for the standalone check covering the width-extension's own new code path) did not introduce a transcription error, by reproducing the already-committed, previously-verified Z_29 sizes 21-28 certificate byte-for-byte.",
+  "method": "Compiled a second generator binary from the SAME erdosfire/oracle/tools/frontier-math/round4/graham-z73/generate_witnesses.cpp source with -DPRIME=29 -DMIN_K_DEFAULT=21 -DMAX_K_DEFAULT=28 (also passed as explicit CLI args 21 28 for the size range), ran it fresh into the Claude scratchpad (outside the repo, not erdosfire/evidence/round4-discovery/graham-z29/, which was never touched), then ran the new graham-z73 copies of both verifiers against that fresh output with --prime 29 --min-k 21 --max-k 28. Also independently re-hashed the committed graham-z29/witnesses.tsv directly before trusting the comparison baseline.",
+  "generatorRun": {
+    "status": "WITNESSES_COMPLETE",
+    "prime": 29,
+    "minimumSize": 21,
+    "maximumSize": 28,
+    "rawSubsets": 1683218,
+    "orbitRepresentatives": 60134,
+    "threads": 24,
+    "greedyTrials": 1904057,
+    "greedyNodes": 36245840,
+    "annealRestarts": 4,
+    "annealSteps": 117621,
+    "elapsedMs": 3364,
+    "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+    "rawBySize": {"21":1184040,"22":376740,"23":98280,"24":20475,"25":3276,"26":378,"27":28,"28":1},
+    "representativesBySize": {"21":42288,"22":13468,"23":3510,"24":735,"25":117,"26":14,"27":1,"28":1}
+  },
+  "committedGrahamZ29WitnessesSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+  "shaMatchesCommittedZ29": true,
+  "byteDiffAgainstCommitted": "diff -q exit 0 (no differences) -- confirmed via direct `diff` of the two files, not sha256 alone",
+  "searchEffortStatsAlsoIdentical": "greedyTrials/greedyNodes/annealRestarts/annealSteps all match the historical regression-z29.json (graham-z61's copy) exactly -- this is a strong check specifically for the seed-folding change (fold_seed_term): since the RNG's search trajectory is fully determined by its seed, byte-identical stats prove the widened seed formula is a true no-op on this narrow-mask path, not just coincidentally producing the same certificate content via a different search path.",
+  "goVerification": {
+    "status": "VERIFIED",
+    "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+    "uniqueCoveredSubsets": 1683218,
+    "expectedCoveredSubsets": 1683218,
+    "coverageBySize": {"21":1184040,"22":376740,"23":98280,"24":20475,"25":3276,"26":378,"27":28,"28":1},
+    "expectedBySize": {"21":1184040,"22":376740,"23":98280,"24":20475,"25":3276,"26":378,"27":28,"28":1},
+    "orbitSizeHistogram": {"1":1,"4":1,"7":1,"14":33,"28":60098}
+  },
+  "pythonVerification": {
+    "status": "VERIFIED",
+    "certificateSha256": "4dd6b2b21f75ffdd1ff472d1bf9a70757ccea0b31f147d49c6b1ff675c5ef961",
+    "coveredSubsets": 1683218,
+    "coverageBySize": {"21":1184040,"22":376740,"23":98280,"24":20475,"25":3276,"26":378,"27":28,"28":1},
+    "expectedBySize": {"21":1184040,"22":376740,"23":98280,"24":20475,"25":3276,"26":378,"27":28,"28":1},
+    "orbitSizeHistogram": {"1":1,"4":1,"7":1,"14":33,"28":60098}
+  },
+  "bothVerifiersAgree": true,
+  "operationalNote": "Built and run entirely inside WSL Ubuntu-22.04 (g++ 11.4.0, go 1.18.1) via a script file written to disk and invoked with MSYS_NO_PATHCONV=1 wsl.exe -d Ubuntu-22.04 -- bash <script.sh> -- no inline multi-line wsl.exe -lc strings used, per the documented interop gremlin. No incidents this run.",
+  "conclusion": "New graham-z73 tool copies (generator + both verifiers), DESPITE containing a real, substantial width-extension (uint64_t/uint64 -> unsigned __int128/mask128{lo,hi}, required because Z_73's N=72 and P=73 both exceed 64 bits -- see the sibling width-extension-selftest.json for why and how this was independently validated), reproduce the known-good Z_29 sizes 21-28 certificate byte-for-byte (direct `diff`, not just sha256sum, and not just verifier self-report), including byte-identical search-effort stats. Both verifiers independently confirm it, with matching orbit-size histogram {1,4,7,14,28} (all divisors of 28, as required for a multiplicative-orbit partition of Z_29^x). Proceeding to the real Z_73 sizes 69-72 run with confidence in the tooling itself (does not and cannot validate the Z_73 mathematical result, which is genuinely new)."
+}

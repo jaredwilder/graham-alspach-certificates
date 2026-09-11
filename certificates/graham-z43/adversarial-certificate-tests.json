@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "allMutationsRejectedByAllVerifiers": true,
+  "mutations": 4,
+  "note": "Exit codes captured directly from the Bash tool's own reported exit status for each individual wsl.exe invocation (one verifier-vs-mutation pair per Bash tool call, not multiple commands relayed through a single -lc string) -- this environment's wsl.exe-from-Windows bridge silently blanks `$` expansions (including `$?` and ordinary shell variables) typed inside a multi-command -lc string before WSL ever sees them, a documented interop quirk independently rediscovered this session (mutation files first written to /tmp vanished between separate wsl.exe calls -- WSL's lightweight VM tears down its tmpfs between invocations when idle -- so mutation files were regenerated under a persistent /mnt/c-backed scratch path instead). The Bash tool's own per-call exit code is reliable and is what is recorded below.",
+  "results": [
+    {
+      "mutation": "invalid_ordering_duplicate_element",
+      "description": "First data row's (mask 0x00fffffffff, size 36) ordering had its last residue value overwritten with a duplicate of its first residue value (8), guaranteeing both a duplicate-residue hit and a missing-residue/set-mismatch hit.",
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderr": "{\n  \"error\": \"row 1 representative invalid: duplicate residue 8\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "traceback": "AssertionError: sequence is not exactly the represented set"
+        }
+      }
+    },
+    {
+      "mutation": "duplicate_representative",
+      "description": "First data row (mask 0x00fffffffff) appended a second time at the end of the file (as row 148158).",
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderr": "{\n  \"error\": \"row 148158 duplicate representative 0xfffffffff\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "traceback": "AssertionError: row 148158: duplicate orbit"
+        }
+      }
+    },
+    {
+      "mutation": "missing_representative",
+      "description": "The unique size-42 (full-set) representative row deleted entirely.",
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderr": "{\n  \"error\": \"size 42 coverage 0 expected 1\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "traceback": "AssertionError: orbit coverage mismatch: {36: 5245786, 37: 850668, 38: 111930, 39: 11480, 40: 861, 41: 42, 42: 0} != {36: 5245786, 37: 850668, 38: 111930, 39: 11480, 40: 861, 41: 42, 42: 1}"
+        }
+      }
+    },
+    {
+      "mutation": "invalid_total_field",
+      "description": "First data row's stated `total` field incremented by 1 mod 43 (21 -> 22), no longer matching the true sum of its mask's members mod 43.",
+      "verifiers": {
+        "go_full_expansion": {
+          "exitCode": 1,
+          "rejected": true,
+          "stderr": "{\n  \"error\": \"row 1 invalid total field\",\n  \"status\": \"FAILED\"\n}"
+        },
+        "python_orbit_accounting": {
+          "exitCode": 1,
+          "rejected": true,
+          "traceback": "AssertionError: row 1: invalid subset total"
+        }
+      }
+    }
+  ]
+}

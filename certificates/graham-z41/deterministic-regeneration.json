@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "note": "Three independent from-source generator runs (not two), all with threads=24 (this machine's WSL nproc). Run 1 is the run committed as witnesses.tsv (elapsedMs=439043 per generator-summary.json). Run 2 and Run 3 were later, fully independent re-invocations of the same generate_witnesses binary against the same CLI arguments (prime=41 compiled in, min_k=34, max_k=40), writing to separate scratch paths, never overwriting the committed certificate.",
+  "run1Sha256": "e60a77fea3f42b70e9e90286cda71b77b75878ab8cba078517f378e426ba465d",
+  "run2Sha256": "e60a77fea3f42b70e9e90286cda71b77b75878ab8cba078517f378e426ba465d",
+  "run3Sha256": "e60a77fea3f42b70e9e90286cda71b77b75878ab8cba078517f378e426ba465d",
+  "committedWitnessesSha256": "e60a77fea3f42b70e9e90286cda71b77b75878ab8cba078517f378e426ba465d",
+  "allIdentical": true,
+  "threadCounts": [24, 24, 24]
+}
