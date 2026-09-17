@@ -1,49 +1,52 @@
 # Graham–Alspach sequenceability certificates
 
-The complete computational certificate bank behind the Graham–Alspach sequenceability results for nine primes, together with independent verification and deliberately corrupted controls.
+The computational certificate bank for verified Graham–Alspach sequenceability ranges in nine prime cyclic groups.
 
-Author: Jared Wilder. First public timestamp: 2026-09-10. Work dated 2026-07.
+A subset `A⊂Z_p\setminus\{0\}` is sequenceable when its elements admit an ordering whose partial sums are pairwise distinct and whose proper partial sums are nonzero.
 
-## The statement being certified
+## Certified ranges
 
-For the finite cyclic groups covered here, every subset `A ⊂ Z_p \ {0}` in the stated cardinality range admits an ordering `a_1,…,a_m` whose partial sums are pairwise distinct and whose proper partial sums are nonzero.
+The bank exhaustively covers:
 
-Published general results cover every subset of size at most 20. These certificates exhaustively cover:
-
-- **sizes 21–28 in `Z_29`**;
-- **sizes 21–30 in `Z_31`**;
-- further upper-size ranges in `Z_37`, `Z_41`, `Z_43`, `Z_47`, `Z_59`, `Z_61`, and `Z_73`.
+- `Z_29`: subset sizes **21–28**;
+- `Z_31`: subset sizes **21–30**;
+- upper-cardinality ranges in `Z_37`, `Z_41`, `Z_43`, `Z_47`, `Z_59`, `Z_61`, and `Z_73`.
 
 `Z_29` alone contains **60,134 certificate rows**.
 
-## Certificate structure
+Published general results cover all subset sizes at most 20; these certificates address finite ranges beyond that threshold.
 
-The computation uses multiplicative symmetry:
+## Certificate construction
 
-1. multiplication by a nonzero residue preserves sequenceability;
-2. the generator chooses one canonical representative from each multiplicative orbit in every target cardinality;
-3. each representative stores its exact subset, total sum, and an explicit sequencing witness.
+Multiplication by a nonzero residue preserves sequenceability. The generator therefore works orbit-by-orbit:
 
-So the key correctness question is not the raw row count but whether the representatives cover every orbit exactly as claimed.
+1. choose one canonical representative from each multiplicative orbit;
+2. store the exact subset and an explicit sequencing witness;
+3. recover the remaining orbit by scaling;
+4. verify that the orbit sizes sum to the full binomial count for the cardinality.
+
+This reduces a complete finite classification to a certificate for every orbit representative plus exact coverage accounting.
 
 ## Independent verification
 
-Two independently written verifiers check the certificates.
+Two separate verifiers check the bank.
 
-The **Go verifier** validates every representative witness, every scaled witness, reconstructs coverage in a `2^28`-bit universe, rejects duplicate coverage, and checks exact binomial totals.
+The Go verifier:
 
-The **Python verifier** independently recomputes canonical representatives and stabilizers, validates each witness, and checks disjoint orbit coverage by exact orbit-size accounting.
+- validates every sequencing witness;
+- validates scaled witnesses;
+- reconstructs coverage in a `2^28`-bit universe;
+- rejects duplicate coverage;
+- checks the exact binomial totals.
 
-Both verifiers reject four classes of deliberately corrupted certificate. Those controls live in `certificates/graham-z29/adversarial-certificate-tests.json` and its v2 companion.
+The Python verifier independently recomputes canonical representatives and stabilizers, validates every witness, and verifies disjoint orbit coverage by exact orbit-size accounting.
 
-Regeneration at 48 threads and at 16 threads produces the same certificate hash.
+Both implementations reject deliberately corrupted certificates included with the test data. Regeneration with different thread counts produces the same certificate hash.
 
-## Lean verification boundary
+## Lean companion
 
-The companion Lean files use Mathlib's three standard classical axioms plus one `native_decide` evaluation per witness. That means the finite witness computation is compiler-evaluated rather than reduced entirely by the kernel.
+The corresponding Lean witness files are in [`graham-alspach-sequenceability`](https://github.com/jaredwilder/graham-alspach-sequenceability). They use the standard Mathlib classical axioms together with `native_decide` for the finite witness evaluations.
 
-The Lean sources are in `jaredwilder/graham-alspach-sequenceability`; the mathematical writeup and compiled PDF are in `jaredwilder/unpublished-math-papers`.
+Larger verified ranges and explicit high-cardinality witnesses are in [`graham-alspach-z53-z71`](https://github.com/jaredwilder/graham-alspach-z53-z71) and [`graham-alspach-extended`](https://github.com/jaredwilder/graham-alspach-extended).
 
-## License
-
-Apache-2.0.
+Author: Jared Wilder. License: Apache-2.0.
